@@ -39,7 +39,7 @@ Communicate with Grafana for real-time and historical data visualization.
 ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/8d696b53-4b43-4abd-801d-2c5109747c3d)
 
 # Système embarqué
-
+++
 ## Schema
 ...
 ## code
