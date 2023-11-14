@@ -48,7 +48,8 @@ Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouv�
 la structure commune au sein de chaque entité de données doit être standardisée afin de favoriser la réutilisation.
 Le modèle de données se trouve dans le fichier suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
 
-Le digital twin serait constamment mis à jour en temps réel à partir des données provenant de l’ESP. Il refléterait les fluctuations de la puissance consoméé. Pour permettre une interation facile, le digital twin aurait une interface utilisateur graphique qui fournirait des visualisations intuitives et des graphiques de performance.# Base de données et registers
+Le digital twin serait constamment mis à jour en temps réel à partir des données provenant de l’ESP. Il refléterait les fluctuations de la puissance consoméé. Pour permettre une interation facile, le digital twin aurait une interface utilisateur graphique qui fournirait des visualisations intuitives et des graphiques de performance.
+# Base de données et registers
 ....
 # Front End / Grafana ?
 .....
