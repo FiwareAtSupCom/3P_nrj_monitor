@@ -33,8 +33,22 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ## code
 ...
 # NGSI / datamodeles 
-....
-# Base de données et registers
+Les données qu’on va utiliser sont :
+• activeEnergyExport : Energie active exportée par phase depuis la date de début du comptage.
+• activeEnergyImport : Énergie active importée consommée par phase depuis la date de début du comptage.
+• activePower : Puissance active consommée par phase depuis la date de début du comptage.
+• courant : 'Courant électrique.
+• dateEnergyMeteringStarted : date de début du comptage de l'énergie.
+• dateModified : Horodatage de la dernière modification de l'entité.
+• phaseToPhaseVoltage : 'Tension entre phases.
+• Facteur de puissance :
+• refTargetDevice : appareil(s) pour lequel(s) la mesure a été effectuée
+
+Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt
+la structure commune au sein de chaque entité de données doit être standardisée afin de favoriser la réutilisation.
+Le modèle de données se trouve dans le fichier suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
+
+Le digital twin serait constamment mis à jour en temps réel à partir des données provenant de l’ESP. Il refléterait les fluctuations de la puissance consoméé. Pour permettre une interation facile, le digital twin aurait une interface utilisateur graphique qui fournirait des visualisations intuitives et des graphiques de performance.# Base de données et registers
 ....
 # Front End / Grafana ?
 .....
