@@ -6,12 +6,23 @@ The Three phases Energy analyse and monitor is project that aims to accurately m
 
 ## Project Objectives:
 L'objectif central de notre projet est de développer un système de smart metering qui permettra la mesure précise et complète des valeurs quantitatives et qualitatives associées aux systèmes de production et de consommation d'énergie électrique. Contrairement à la focalisation sur le ADE 9000, notre attention est portée sur la création d'un outil innovant et performant qui répondra aux besoins spécifiques liés à la surveillance et à l'optimisation des processus énergétiques.
+
+## Systèmes monitorés:
+
+Le système axé sur la mesure et la surveillance de l'énergie en trois phases, pourrait être utilisé pour surveiller divers systèmes de production et de consommation d'énergie électrique. Voici quelques exemples de systèmes que le système peut monitorer :
+
+
+1. Réseau Électrique Local : Le système pourrait être utilisé pour surveiller la consommation d'énergie dans un bâtiment, permettant aux utilisateurs de prendre des décisions informées pour économiser de l'énergie.
+Le système pourrait surveiller la consommation d'énergie pour l'éclairage, le chauffage, la climatisation, etc., afin d'optimiser l'efficacité énergétique.
+
+2. Systèmes d'Énergie Renouvelable : Il pourrait être utilisé pour surveiller les systèmes de production d'énergie renouvelable tels que les parcs éoliens, les centrales solaires, etc.
+
 # Architecture
 
 ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/8d696b53-4b43-4abd-801d-2c5109747c3d)
 
 # Système embarqué
-++
+![My Image](img/processes_sur_ESP-32.jpg)
 ## Schema
 ...
 ## code
