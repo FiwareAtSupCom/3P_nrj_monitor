@@ -44,7 +44,8 @@ Les données qu’on va utiliser sont :
 • Facteur de puissance :
 • refTargetDevice : appareil(s) pour lequel(s) la mesure a été effectuée
 
-Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt
+Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt 
+
 la structure commune au sein de chaque entité de données doit être standardisée afin de favoriser la réutilisation.
 Le modèle de données se trouve dans le fichier suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
 
