@@ -1,0 +1,188 @@
+curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+{
+    "id": "    activeEnergyExport:",
+    "type": "object",
+    "L1": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L2": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L3": {
+        "type": "number",
+        "value": {  
+        }
+     "units": "kilowatt hour (kWh)",
+        },
+ }       
+        
+        curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+       { 
+         "id": " activeEnergyImport:",
+    "type": "object",
+    "L1": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L2": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L3": {
+        "type": "number",
+        "value": {  
+        }
+    },
+     "units": "kilowatt hour (kWh)",
+  }
+
+     curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+       {
+       "id": " activepower:",
+    "type": "object",
+    "L1": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L2": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L3": {
+        "type": "number",
+        "value": {  
+        }
+    },
+    "units": " watt (W) ",
+    
+  }
+    curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+  {
+      "id": " current:",
+    "type": "object",
+    "L1": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L2": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L3": {
+        "type": "number",
+        "value": {  
+        }
+     },
+    "N": {
+        "type": "number",
+        "value": {  
+        }
+    },
+     "units": "Ampers (A)",
+  }
+
+    curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+   { 
+      "id": " dateEnergyMeteringStarted:",
+    "type": "DateTime",
+        "value": ,
+       }
+
+       curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+    {
+      "id": " dateModif:",
+    "type": "DateTime",
+        "value": ,
+    
+    }
+    curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+  {
+      "id": " phaseToPhaseVoltager:",
+    "type": "object",
+    "L12": {
+        "type": "object",
+        "value": {
+        }
+        },
+    "L23": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L31": {
+        "type": "number",
+        "value": {  
+        }
+    },
+    }
+    curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+  {
+      "id": "  powerFactor:",
+    "type": "object",
+    "L1": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L2": {
+        "type": "number",
+        "value": {
+        }
+        },
+    "L3": {
+        "type": "number",
+        "value": {  
+        }
+    },
+    
+    }
+    curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+  {
+      "id": " refTargetDevice:",
+    "type": "object",
+      " type: string",
+    
+    
+   
+  }
+    
+    
+    
+    
