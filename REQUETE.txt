@@ -18,10 +18,10 @@ curl -iX POST \
     "L3": {
         "type": "number",
         "value": {  
-        },
-     "units": "kilowatt hour (kWh)",
         }
-        
+     "units": "kilowatt hour (kWh)",
+        },
+ }       
         
         curl -iX POST \
   'http://localhost:1026/v2/entities' \
@@ -46,7 +46,8 @@ curl -iX POST \
         }
     },
      "units": "kilowatt hour (kWh)",
-           }
+  }
+
      curl -iX POST \
   'http://localhost:1026/v2/entities' \
   -H 'Content-Type: application/json' \
@@ -93,13 +94,15 @@ curl -iX POST \
         "type": "number",
         "value": {  
         }
+     },
     "N": {
         "type": "number",
         "value": {  
         }
     },
      "units": "Ampers (A)",
-    }
+  }
+
     curl -iX POST \
   'http://localhost:1026/v2/entities' \
   -H 'Content-Type: application/json' \
@@ -109,11 +112,12 @@ curl -iX POST \
     "type": "DateTime",
         "value": ,
        }
+
        curl -iX POST \
   'http://localhost:1026/v2/entities' \
   -H 'Content-Type: application/json' \
   -d '
-    
+    {
       "id": " dateModif:",
     "type": "DateTime",
         "value": ,
@@ -176,7 +180,7 @@ curl -iX POST \
       " type: string",
     
     
-    },
+   
   }
     
     
