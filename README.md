@@ -35,14 +35,23 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 # NGSI / datamodeles 
 Les données qu’on va utiliser sont :
 • activeEnergyExport : Energie active exportée par phase depuis la date de début du comptage.
+
 • activeEnergyImport : Énergie active importée consommée par phase depuis la date de début du comptage.
+
 • activePower : Puissance active consommée par phase depuis la date de début du comptage.
+
 • courant : 'Courant électrique.
+
 • dateEnergyMeteringStarted : date de début du comptage de l'énergie.
+
 • dateModified : Horodatage de la dernière modification de l'entité.
+
 • phaseToPhaseVoltage : 'Tension entre phases.
+
 • Facteur de puissance :
+
 • refTargetDevice : appareil(s) pour lequel(s) la mesure a été effectuée
+
 
 Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt 
 
