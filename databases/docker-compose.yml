@@ -1,0 +1,65 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:4.2
+   
+    ports:
+      - "27017:27017"
+    networks:
+      - fiware_network
+    volumes:
+      - mongo_data:/data/db
+
+  orion:
+    image: fiware/orion:3.10.1
+    ports:
+      - "1026:1026"
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:1026/version"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    networks:
+      - fiware_network
+    environment:
+    - MONGO_URL=mongodb://toturie_mongodb_1:27017
+    - MONGO_DB=orion
+  cratedb:
+    image: "crate:4.2"
+    command: crate -Cauth.host_based.enabled=false
+      -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
+    volumes:
+      - crate_data:/data
+    ports:
+      - "4200:4200"
+      - "4300:4300"
+      - "5432:5432"
+    networks:
+      - fiware_network
+
+  quantumleap:
+    image: smartsdk/quantumleap
+    ports:
+      - "8668:8668"
+    depends_on:
+      - mongodb
+      - orion
+      - cratedb
+    environment:
+      - CRATE_HOST=cratedb
+      - USE_GEOCODING=True
+    networks:
+      - fiware_network
+
+volumes:
+  mongo_data:
+  crate_data:
+
+networks:
+  fiware_network: {}
+
+
+
+
