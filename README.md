@@ -34,6 +34,7 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ...
 # NGSI / datamodeles 
 Les données qu’on va utiliser sont :
+
 • activeEnergyExport : Energie active exportée par phase depuis la date de début du comptage.
 
 • activeEnergyImport : Énergie active importée consommée par phase depuis la date de début du comptage.
