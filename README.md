@@ -25,6 +25,9 @@ Le système pourrait surveiller la consommation d'énergie pour l'éclairage, le
 
 L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les données sont transmises par Wi-Fi, et en cas d'interruption de la connexion, l'ESP32 stocke les informations dans une mémoire limitée de 512 octets. Elle surveille activement la connexion Wi-Fi, ajustant les timers pour minimiser le stockage local si la connexion est interrompue. Cette approche garantit une gestion efficace des données malgré les perturbations de la connectivité
 ![My Image](img/processes_sur_ESP-32.jpg)
+![My Image](img/programme-principal.jpg)
+![My Image](img/power_interrpt.jpg)
+![My Image](img/Energy_interupt.jpg)
 ## Schema
 ...
 ## code
