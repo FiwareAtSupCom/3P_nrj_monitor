@@ -22,6 +22,8 @@ Le système pourrait surveiller la consommation d'énergie pour l'éclairage, le
 ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/8d696b53-4b43-4abd-801d-2c5109747c3d)
 
 # Système embarqué
+
+L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les données sont transmises par Wi-Fi, et en cas d'interruption de la connexion, l'ESP32 stocke les informations dans une mémoire limitée de 512 octets. Elle surveille activement la connexion Wi-Fi, ajustant les timers pour minimiser le stockage local si la connexion est interrompue. Cette approche garantit une gestion efficace des données malgré les perturbations de la connectivité
 ![My Image](img/processes_sur_ESP-32.jpg)
 ## Schema
 ...
