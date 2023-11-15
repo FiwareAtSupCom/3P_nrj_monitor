@@ -32,10 +32,54 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ## code
 ...
 # NGSI / datamodeles 
-....
+Les données qu’on va utiliser sont :
+
+• activeEnergyExport : Energie active exportée par phase depuis la date de début du comptage.
+
+• activeEnergyImport : Énergie active importée consommée par phase depuis la date de début du comptage.
+
+• activePower : Puissance active consommée par phase depuis la date de début du comptage.
+
+• courant : 'Courant électrique.
+
+• dateEnergyMeteringStarted : date de début du comptage de l'énergie.
+
+• dateModified : Horodatage de la dernière modification de l'entité.
+
+• phaseToPhaseVoltage : 'Tension entre phases.
+
+• Facteur de puissance :
+
+• refTargetDevice : appareil(s) pour lequel(s) la mesure a été effectuée
+
+
+Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt 
+
+la structure commune au sein de chaque entité de données doit être standardisée afin de favoriser la réutilisation.
+Le modèle de données se trouve dans le fichier suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
+
+Le digital twin serait constamment mis à jour en temps réel à partir des données provenant de l’ESP. Il refléterait les fluctuations de la puissance consoméé. Pour permettre une interation facile, le digital twin aurait une interface utilisateur graphique qui fournirait des visualisations intuitives et des graphiques de performance.
 # Base de données et registers
 ....
 # Front End / Grafana ?
-.....
+The choice of technology to use:
+![image1](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/58f27566-6620-4446-9689-2a541a62fe44)
+
+• Ease of Use and Flexibility: Grafana provides a user-friendly interface for creating visualizations and dashboards without extensive coding. Its flexibility allows easy integration with various data sources, including CrateDB and Fiware solutions, making it a versatile choice.
+
+• Real-Time Data Visualization: Grafana supports real-time data visualization, allowing you to create live dashboards that update dynamically as new data comes in. This is crucial for monitoring grid systems that require up-to-date information.
+
+• Large Variety of Visualization Options: Grafana offers a wide array of visualization options. This variety enables you to choose the most suitable visualization type for different types of grid system data.
+
+• Alerting and Monitoring Capabilities: Grafana provides alerting functionalities that can be set up based on the data from CrateDB and Fiware, allowing for proactive monitoring of the grid systems. This ensures timely responses to any anomalies or critical situations.
+
+• Community Support and Integration: Grafana has a large community of users and developers, resulting in extensive documentation, plugins, and support. It integrates well with various data sources, making it easier to combine data from CrateDB and Fiware in a unified dashboard.
+
+• Using a native frontend or other solutions might be more time-consuming and may lack the robustness and features that Grafana offers specifically for data visualization and monitoring. 
+![image2](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/11e5ede7-3e0e-46d0-bb30-d42cb9653795)
+
+Grafana, in this context, appears to be a strong choice due to its ease of use, real-time capabilities, extensive visualization options, and community support, allowing you to focus more on the representation and analysis of the data rather than the complexities of building a visualization platform from scratch.
+
+
 
 
