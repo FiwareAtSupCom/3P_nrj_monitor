@@ -1,4 +1,70 @@
-
+curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+{
+    "type": "Store",
+    "id": "urn:ngsi-ld:Store:002",
+    "address": {
+        "type": "PostalAddress",
+        "value": {
+            "streetAddress": "Friedrichstraße 44",
+            "addressRegion": "Berlin",
+            "addressLocality": "Kreuzberg",
+            "postalCode": "10969"
+        },
+        "metadata": {
+            "verified": {
+                "value": true,
+                "type": "Boolean"
+            }
+        }
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+             "type": "Point",
+             "coordinates": [13.3903, 52.5075]
+        }
+    },
+    "name": {
+        "type": "Text",
+        "value": "Checkpoint Markt"
+    }
+}'curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '
+{
+    "type": "Store",
+    "id": "urn:ngsi-ld:Store:002",
+    "address": {
+        "type": "PostalAddress",
+        "value": {
+            "streetAddress": "Friedrichstraße 44",
+            "addressRegion": "Berlin",
+            "addressLocality": "Kreuzberg",
+            "postalCode": "10969"
+        },
+        "metadata": {
+            "verified": {
+                "value": true,
+                "type": "Boolean"
+            }
+        }
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+             "type": "Point",
+             "coordinates": [13.3903, 52.5075]
+        }
+    },
+    "name": {
+        "type": "Text",
+        "value": "Checkpoint Markt"
+    }
+}'
 # Project Description
 
 ## Introduction:
@@ -34,7 +100,6 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 # NGSI / datamodeles 
 Les données qu’on va utiliser sont :
 
-• activeEnergyExport : Energie active exportée par phase depuis la date de début du comptage.
 
 • activeEnergyImport : Énergie active importée consommée par phase depuis la date de début du comptage.
 
@@ -46,11 +111,10 @@ Les données qu’on va utiliser sont :
 
 • dateModified : Horodatage de la dernière modification de l'entité.
 
-• phaseToPhaseVoltage : 'Tension entre phases.
 
 • Facteur de puissance :
 
-• refTargetDevice : appareil(s) pour lequel(s) la mesure a été effectuée
+
 
 
 Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt 
