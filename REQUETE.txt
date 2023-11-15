@@ -1,27 +1,4 @@
-curl -iX POST \
-  'http://localhost:1026/v2/entities' \
-  -H 'Content-Type: application/json' \
-  -d '
-{
-    "id": "    activeEnergyExport:",
-    "type": "object",
-    "L1": {
-        "type": "number",
-        "value": {
-        }
-        },
-    "L2": {
-        "type": "number",
-        "value": {
-        }
-        },
-    "L3": {
-        "type": "number",
-        "value": {  
-        }
-     "units": "kilowatt hour (kWh)",
-        },
- }       
+      
         
         curl -iX POST \
   'http://localhost:1026/v2/entities' \
@@ -170,19 +147,7 @@ curl -iX POST \
     },
     
     }
-    curl -iX POST \
-  'http://localhost:1026/v2/entities' \
-  -H 'Content-Type: application/json' \
-  -d '
-  {
-      "id": " refTargetDevice:",
-    "type": "object",
-      " type: string",
-    
-    
    
-  }
-    
     
     
     
