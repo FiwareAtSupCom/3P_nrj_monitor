@@ -159,9 +159,8 @@ crate-db:
         -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
     environment:
         - CRATE_HEAP_SIZE=2g
-
-
-# Front End / Grafana ?
+```
+###Front End / Grafana ?
 The choice of technology to use:
 ![image1](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/58f27566-6620-4446-9689-2a541a62fe44)
 
