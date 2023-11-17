@@ -26,30 +26,26 @@ services:
     environment:
     - MONGO_URL=mongodb://toturie_mongodb_1:27017
     - MONGO_DB=orion
-  cratedb:
-    image: "crate:4.2"
-    command: crate -Cauth.host_based.enabled=false
-      -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
-    volumes:
-      - crate_data:/data
+ crate-db:
+    image: crate:4.1.4
+    hostname: crate-db
     ports:
-      - "4200:4200"
-      - "4300:4300"
-      - "5432:5432"
-    networks:
-      - fiware_network
-
+        - "4200:4200"
+        - "4300:4300"
+    command:
+        crate -Clicense.enterprise=false -Cauth.host_based.enabled=false  -Ccluster.name=democluster
+        -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
+    environment:
+        - CRATE_HEAP_SIZE=2g
   quantumleap:
     image: smartsdk/quantumleap
+    hostname: quantumleap
     ports:
-      - "8668:8668"
+        - "8668:8668"
     depends_on:
-      - mongodb
-      - orion
-      - cratedb
+        - crate-db
     environment:
-      - CRATE_HOST=cratedb
-      - USE_GEOCODING=True
+        - CRATE_HOST=crate-db
     networks:
       - fiware_network
 
