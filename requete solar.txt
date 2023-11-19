@@ -1,0 +1,90 @@
+curl -iX POST \
+  'http://localhost:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType": "APPEND",
+  "entities": [
+    {
+      "id": "activeEnergyImport2",
+      "type": "object",
+      "L1": {
+        "type": "Property",
+        "value": 0
+      },
+      "L2": {
+        "type": "Property",
+        "value": 0
+      },
+      "L3": {
+        "type": "Property",
+        "value": 0
+      }
+    },
+    {
+      "id": "activepower2",
+      "type": "object",
+      "L1": {
+        "type": "Property",
+        "value": 0
+      },
+      "L2": {
+        "type": "Property",
+        "value": 0
+      },
+      "L3": {
+        "type": "Property",
+        "value": 0
+      }
+    },
+    {
+      "id": "current2",
+      "type": "object",
+      "L1": {
+        "type": "Property",
+        "value": 0
+      },
+      "L2": {
+        "type": "Property",
+        "value": 0
+      },
+      "L3": {
+        "type": "Property",
+        "value": 0
+      },
+      "N": {
+        "type": "number",
+        "value": 0
+      }
+    },
+    {
+      "id": "powerfactor2",
+      "type": "object",
+      "L1": {
+        "type": "Property",
+        "value": 0
+      },
+      "L2": {
+        "type": "Property",
+        "value": 0
+      },
+      "L3": {
+        "type": "Property",
+        "value": 0
+      }
+    },
+    {
+       "id": "dateEnergyMeteringStarted2",
+       "type": "DateTime",
+       "keyValues": {
+         "value": "2023-11-19T12:30:00Z"
+       }
+     },
+     {
+       "id": "dateModif2",
+       "type": "DateTime",
+       "keyValues": {
+         "value": "2023-11-19T15:30:00Z"
+       }
+     }
+  ]
+}'
