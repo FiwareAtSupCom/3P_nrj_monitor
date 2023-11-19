@@ -1,70 +1,4 @@
-curl -iX POST \
-  'http://localhost:1026/v2/entities' \
-  -H 'Content-Type: application/json' \
-  -d '
-{
-    "type": "Store",
-    "id": "urn:ngsi-ld:Store:002",
-    "address": {
-        "type": "PostalAddress",
-        "value": {
-            "streetAddress": "Friedrichstraße 44",
-            "addressRegion": "Berlin",
-            "addressLocality": "Kreuzberg",
-            "postalCode": "10969"
-        },
-        "metadata": {
-            "verified": {
-                "value": true,
-                "type": "Boolean"
-            }
-        }
-    },
-    "location": {
-        "type": "geo:json",
-        "value": {
-             "type": "Point",
-             "coordinates": [13.3903, 52.5075]
-        }
-    },
-    "name": {
-        "type": "Text",
-        "value": "Checkpoint Markt"
-    }
-}'curl -iX POST \
-  'http://localhost:1026/v2/entities' \
-  -H 'Content-Type: application/json' \
-  -d '
-{
-    "type": "Store",
-    "id": "urn:ngsi-ld:Store:002",
-    "address": {
-        "type": "PostalAddress",
-        "value": {
-            "streetAddress": "Friedrichstraße 44",
-            "addressRegion": "Berlin",
-            "addressLocality": "Kreuzberg",
-            "postalCode": "10969"
-        },
-        "metadata": {
-            "verified": {
-                "value": true,
-                "type": "Boolean"
-            }
-        }
-    },
-    "location": {
-        "type": "geo:json",
-        "value": {
-             "type": "Point",
-             "coordinates": [13.3903, 52.5075]
-        }
-    },
-    "name": {
-        "type": "Text",
-        "value": "Checkpoint Markt"
-    }
-}'
+
 # Project Description
 
 ## Introduction:
@@ -115,7 +49,9 @@ The data we will use is:
 • Power factor :
 
 
-The requests for writing IoT systems corresponding to the NGSI are found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt
+The requests for writing IoT systems corresponding to the NGSI are found in the following files: 
+https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE%203%20phases.txt 
+
 
 the common structure within each data entity must be standardized to promote reuse.
 The data model can be found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
