@@ -1,4 +1,3 @@
-https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/requete%20solar.txthttps://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/requete%20solar.txt
 # Project Description
 
 ## Introduction:
@@ -50,7 +49,9 @@ The data we will use is:
 
 
 The requests for writing IoT systems corresponding to the NGSI are found in the following files: 
+
 https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE%203%20phases.txt 
+
 https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/requete%20solar.txt
 
 the common structure within each data entity must be standardized to promote reuse.
