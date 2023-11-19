@@ -98,31 +98,29 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ## code
 ...
 # NGSI / datamodeles 
-Les données qu’on va utiliser sont :
+The data we will use is:
 
 
-• activeEnergyImport : Énergie active importée consommée par phase depuis la date de début du comptage.
+• activeEnergyImport: Imported active energy consumed per phase since the counting start date.
 
-• activePower : Puissance active consommée par phase depuis la date de début du comptage.
+• activePower: Active power consumed per phase since the counting start date.
 
-• courant : 'Courant électrique.
+• current: 'Electric current.
 
-• dateEnergyMeteringStarted : date de début du comptage de l'énergie.
+• dateEnergyMeteringStarted: start date of energy metering.
 
-• dateModified : Horodatage de la dernière modification de l'entité.
-
-
-• Facteur de puissance :
+• dateModified: Timestamp of the last modification of the entity.
 
 
+• Power factor :
 
 
-Les requétes  d’ectriture des systèmes IoT correspondant au NGSI sont trouvés dans le fichier  suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt 
+The requests for writing IoT systems corresponding to the NGSI are found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE.txt
 
-la structure commune au sein de chaque entité de données doit être standardisée afin de favoriser la réutilisation.
-Le modèle de données se trouve dans le fichier suivant : https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
+the common structure within each data entity must be standardized to promote reuse.
+The data model can be found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
 
-Le digital twin serait constamment mis à jour en temps réel à partir des données provenant de l’ESP. Il refléterait les fluctuations de la puissance consoméé. Pour permettre une interation facile, le digital twin aurait une interface utilisateur graphique qui fournirait des visualisations intuitives et des graphiques de performance.
+The digital twin would be constantly updated in real time using data from the ESP. It would reflect fluctuations in power consumed. To enable easy interaction, the digital twin would have a graphical user interface that would provide intuitive visualizations and performance charts.
 # Base de données et registers
 ## Context Broker (Orion)
 
