@@ -31,6 +31,22 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ## code
 ...
 # NGSI / datamodeles 
+The necessary configuration information can be seen in the services section of the associated docker-compose.yml file:
+
+orion:
+    image: quay.io/fiware/orion:latest
+    hostname: orion
+    container_name: orion
+    depends_on:
+        - mongo-db
+    networks:
+        - default
+    expose:
+        - '1026'
+    ports:
+        - '1026:1026'
+    command: -dbhost mongo-db -logLevel DEBUG
+    
 The data we will use is:
 
 
