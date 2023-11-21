@@ -48,7 +48,20 @@ orion:
         - '1026:1026'
     command: -dbhost mongo-db -logLevel DEBUG
   ```
-  
+
+```yaml
+  mongo-db:
+    image: mongo:4.2
+    hostname: mongo-db
+    container_name: db-mongo
+    expose:
+        - '27017'
+    ports:
+        - '27017:27017'
+    networks:
+        - default
+  ```
+
 The data we will use is:
 
 
