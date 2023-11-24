@@ -86,8 +86,8 @@ https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE%203%20phases.
 https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/requete%20solar.txt
 
 the common structure within each data entity must be standardized to promote reuse.
-The data model can be found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt
-
+The data model for threephase measurement can be found in the following file: [https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt] extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/ACMeasurement/model.yaml
+The data model for solar energy can be found in the following file:https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/solar-data-model extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/SolarEnergy/model.yaml
 The digital twin would be constantly updated in real time using data from the ESP. It would reflect fluctuations in power consumed. To enable easy interaction, the digital twin would have a graphical user interface that would provide intuitive visualizations and performance charts.
 # Base de données et registers
 ## Context Broker (Orion)
