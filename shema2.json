@@ -21,27 +21,10 @@
           "enum": ["SolarEnergy"],
           "description": "Property. NGSI Entity type. It has to be SolarEnergy"
         },
-        "activeEnergyImport2": {
-          "type": "object",
-          "description": "Property. Model:'https://schema.org/StructuredValue'. Active energy imported i.e. consumed per phase. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilowatt hour'",
-          "properties": {
-            "L1": {
-              "type": "number",
-              "minimum": 0,
-              "description": "Property. Value for phase 1 of the active Energy Import"
-            },
-            "L2": {
-              "type": "number",
-              "minimum": 0,
-              "description": "Property. Value for phase 2 of the active Energy Import"
-            },
-            "L3": {
-              "type": "number",
-              "minimum": 0,
-              "description": "Property. Value for phase 3 of the active Energy Import"
-            }
-          }
-        },
+         "energyGenerated": {
+                    "type": "number",
+                    "description": "Property. Energy generated over a specific time range from the energy resource corresponding to this observation"
+                },
         "powerFactor2": {
           "type": "object",
           "description": "Property. Model:'http://schema.org/StructuredValue'. Units:'-1 to +1'. Power factor for each phase. The actual values will be conveyed by one subproperty per alternating current phase: L1, L2, and L3",
