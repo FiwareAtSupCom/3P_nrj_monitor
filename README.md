@@ -155,6 +155,7 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ## code
 ...
 # NGSI / datamodeles 
+The Data Model intended to measure the electrical energies consumed by an electrical system which uses an Alternating Current (AC) for a three-phase (L1, L2, L3) or single-phase (L) and neutral (N). It integrates the initial version of the data Modem [THREEPHASEMEASUREMENT], extended to also perform single-phase measurements. It includes attributes for various electrical measurements 
 
 The data we will use is:
 
