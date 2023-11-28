@@ -50,25 +50,24 @@ For simplicity, all components will be executed using [Docker](https://www.docke
  - To set up Docker on Windows, refer to the provided instructions [here](https://docs.docker.com/docker-for-windows/).
  - For Mac users, the installation steps for Docker can be found[here](https://docs.docker.com/docker-for-mac/).
  - Linux users can install Docker by following the instructions available [here](https://docs.docker.com/install/).
+ Docker Compose, a tool designed for defining and running multi-container Docker applications, utilizes [YAML files](https://raw.githubusercontent.com/Fiware/tutorials.Time-Series-Data/master/docker-compose.yml)files to configure the necessary services for the application. This approach allows for the simultaneous launch of all container services with a single command. While Docker Compose comes pre-installed with Docker for Windows and Docker for Mac, Linux users may need to refer to the instructions provided [here](https://docs.docker.com/compose/install/) for installation.
+ You can check your current **Docker** and **Docker Compose** versions using the following commands:
+
 
 ```console
 docker-compose -v
 docker version
 ```
+# Start Up
+Prior to initiating the process, it is essential to confirm that you have acquired or constructed the required Docker images on your local system. To do so, kindly clone the repository and generate the essential images by executing the provided commands as follows:
+```console
+git clone https://github.com/FiwareAtSupCom/3P_nrj_monitor.git
+cd 3P_nrj_monitor
+git checkout NGSI-v2
+```
+In this project, we've crafted a Docker Compose file specifically tailored for generating images for Fiware Orion, MongoDB, QuantumLeap, and CreatDB. The docker-compose.yml file serves as a centralized configuration hub, streamlining the orchestration and deployment of these services. By executing the Docker Compose file, you can effortlessly create containers for each component, ensuring a seamless and efficient setup of the required project environment. Please refer to the README instructions for cloning the repository and executing the necessary commands to prepare the essential Docker images for a successful deployment.
 
-# Système embarqué
-
-L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les données sont transmises par Wi-Fi, et en cas d'interruption de la connexion, l'ESP32 stocke les informations dans une mémoire limitée de 512 octets. Elle surveille activement la connexion Wi-Fi, ajustant les timers pour minimiser le stockage local si la connexion est interrompue. Cette approche garantit une gestion efficace des données malgré les perturbations de la connectivité
-![MyImage](img/processes_sur_ESP-32.jpg width="40" height="400")
-![MyImage](img/power_interrpt.jpg width="40" height="400")
-![MyImage](img/Energy_interupt.jpg width="40" height="400")
-## Schema
-...
-## code
-...
-# NGSI / datamodeles 
-The necessary configuration information can be seen in the services section of the associated docker-compose.yml file:
-
+We've configured the images for Fiware Orion, ensuring the necessary parameters are optimized. Additionally, we've tailored the configurations for MongoDB images to ensure optimal performance within the project context.
 ```yaml
 orion:
     image: quay.io/fiware/orion:latest
@@ -84,8 +83,7 @@ orion:
         - '1026:1026'
     command: -dbhost mongo-db -logLevel DEBUG
   ```
-
-```yaml
+  ```yaml
   mongo-db:
     image: mongo:4.2
     hostname: mongo-db
@@ -97,6 +95,66 @@ orion:
     networks:
         - default
   ```
+  ### Connecting FIWARE to CrateDB via QuantumLeap
+
+In the configuration, QuantumLeap listens to NGSI v2 notifications on port 8668 and persists historic context data to CrateDB. CrateDB is accessible using port 4200 and can either be queried directly or attached to the Grafana analytics tool.
+
+### CrateDB Database Server Configuration
+
+To set up the CrateDB Database Server, use the following configuration in your docker-compose.yml file:
+
+```yaml
+crate-db:
+    image: crate:4.1.4
+    hostname: crate-db
+    ports:
+        - '4200:4200'
+        - '4300:4300'
+    command:
+        crate -Clicense.enterprise=false -Cauth.host_based.enabled=false  -Ccluster.name=democluster
+        -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
+    environment:
+        - CRATE_HEAP_SIZE=2g
+```
+If CrateDB exits immediately with a max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144] error, this can be fixed by running the sudo sysctl -w vm.max_map_count=262144 command on the host machine. 
+### QuantumLeap Configuration
+```yaml
+  quantumleap:
+    image: smartsdk/quantumleap
+    hostname: quantumleap
+    ports:
+        - '8668:8668'
+    depends_on:
+        - crate-db
+    environment:
+        - CRATE_HOST=crate-db
+    networks:
+      - fiware_network
+```  
+The quantumleap container is listening on one port:
+
+The Operations for port for QuantumLeap - 8668 is where the service will be listening for notifications from the Orion context broker and where users can query data from.
+The CRATE_HOST environment variable defines the location where the data will be persisted.
+
+The cratedb container is listening on two ports:
+
+The Admin UI is available on port 4200
+The transport protocol is available on port 4300 
+After configuring the docker-compose file, execute it using the following command:
+```console 
+docker-compose up -d
+```
+# Système embarqué
+
+L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les données sont transmises par Wi-Fi, et en cas d'interruption de la connexion, l'ESP32 stocke les informations dans une mémoire limitée de 512 octets. Elle surveille activement la connexion Wi-Fi, ajustant les timers pour minimiser le stockage local si la connexion est interrompue. Cette approche garantit une gestion efficace des données malgré les perturbations de la connectivité
+![MyImage](img/processes_sur_ESP-32.jpg width="40" height="400")
+![MyImage](img/power_interrpt.jpg width="40" height="400")
+![MyImage](img/Energy_interupt.jpg width="40" height="400")
+## Schema
+...
+## code
+...
+# NGSI / datamodeles 
 
 The data we will use is:
 
@@ -127,44 +185,7 @@ The data model for threephase measurement can be found in the following file: [h
 The data model for solar energy can be found in the following file:https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/solar-data-model extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/SolarEnergy/model.yaml
 
 The digital twin would be constantly updated in real time using data from the ESP. It would reflect fluctuations in power consumed. To enable easy interaction, the digital twin would have a graphical user interface that would provide intuitive visualizations and performance charts.
-# Prerequisites
-Analyzing time series data is crucial for effectively monitoring the three-phase electricity system. The suitability of time series data analysis hinges on the specific requirements of your project and the reliability of the collected measurements. This analytical approach enables you to address key questions related to the electricity system, such as determining the maximum, average, and cumulative measurements of the devices over specific time intervals. Additionally, time series analysis can be applied to mitigate the impact of outliers by employing smoothing techniques, thereby enhancing the overall robustness of the monitoring process.
 
-### Connecting FIWARE to CrateDB via QuantumLeap
-
-In the configuration, QuantumLeap listens to NGSI v2 notifications on port 8668 and persists historic context data to CrateDB. CrateDB is accessible using port 4200 and can either be queried directly or attached to the Grafana analytics tool.
-
-### CrateDB Database Server Configuration
-
-To set up the CrateDB Database Server, use the following configuration in your docker-compose.yml file:
-
-```yaml
-crate-db:
-    image: crate:4.1.4
-    hostname: crate-db
-    ports:
-        - '4200:4200'
-        - '4300:4300'
-    command:
-        crate -Clicense.enterprise=false -Cauth.host_based.enabled=false  -Ccluster.name=democluster
-        -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
-    environment:
-        - CRATE_HEAP_SIZE=2g
-```
-### QuantumLeap Configuration
-```yaml
-  quantumleap:
-    image: smartsdk/quantumleap
-    hostname: quantumleap
-    ports:
-        - '8668:8668'
-    depends_on:
-        - crate-db
-    environment:
-        - CRATE_HOST=crate-db
-    networks:
-      - fiware_network
-```
 ## Front End / Grafana ?
 The choice of technology to use:
 ![image1](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/58f27566-6620-4446-9689-2a541a62fe44)
