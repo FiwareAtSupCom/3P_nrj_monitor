@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#",
   "modelTags": "IUDX",
-  "$id": "https://smart-data-models.github.io/dataModel.Energy/SolarEnergy/schema.json",
+  "$id": "https://github.com/FiwareAtSupCom/3P_nrj_monitor/edit/main/shema2.json",
   "title": "Smart Data Models - Solar Energy",
   "$schemaVersion": "0.0.1",
   "description": "A Data Model for Solar Energy generation.",
