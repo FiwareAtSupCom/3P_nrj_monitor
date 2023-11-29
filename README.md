@@ -206,6 +206,12 @@ The choice of technology to use:
 
 Grafana, in this context, appears to be a strong choice due to its ease of use, real-time capabilities, extensive visualization options, and community support, allowing you to focus more on the representation and analysis of the data rather than the complexities of building a visualization platform from scratch.
 
+• Navigate to http://192.168.33.69:3000 and log in with default credentials which are: admin / admin
 
+• Add a new data source using the following parameters:
+![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/05353534-45b8-4cff-b463-c2d188ed272d)
+
+• Import the dashboard located in: grafana_dashboard folder:
+![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/bf60c68b-105e-4d09-82c8-1ff6f713de04)
 
 
