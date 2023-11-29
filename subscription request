@@ -1,0 +1,54 @@
+curl -iX POST \
+  --url 'http://localhost:1026/v2/subscriptions' \
+  --header 'content-type: application/json' \
+  --data '{
+  "description": "Notify me of all energy measurement changes",
+  "subject": {
+     "entities": [
+      {
+        "id": "activeEnergyImport1",
+        "id": "dateModified1":
+      },
+      "condition": {
+      "attrs": [
+        "L1",
+        "L2"
+        "L3"
+        "value"
+      ]
+    }
+  },
+  "notification": {
+    "http": {
+      "url": "http://quantumleap:8668/v2/notify"
+    }
+  }
+}'
+
+
+curl -iX POST \
+  --url 'http://localhost:1026/v2/subscriptions' \
+  --header 'content-type: application/json' \
+  --data '{
+  "description": "Notify me of all power measurement changes",
+  "subject": {
+     "entities": [
+      {
+        "id": "activePower1",
+        "id": "dateModified1":
+      },
+      "condition": {
+      "attrs": [
+        "L1",
+        "L2"
+        "L3"
+        "value"
+      ]
+    }
+  },
+  "notification": {
+    "http": {
+      "url": "http://quantumleap:8668/v2/notify"
+    }
+  }
+}'
