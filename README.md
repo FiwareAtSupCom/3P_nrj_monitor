@@ -160,11 +160,11 @@ The Data Model intended to measure the electrical energies consumed by an electr
 The data we will use is:
 
 
-• activeEnergyImport: Imported active energy consumed per phase since the counting start date.
+• activeEnergyImport: Active energy imported i.e. consumed per phase. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilowatt hour'
 
-• activePower: Active power consumed per phase since the counting start date.
+• activePower: Active power consumed per phase. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'Watt'
 
-• current: 'Electric current.
+• current: Electrical current. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'Ampere'
 
 • dateEnergyMeteringStarted: start date of energy metering.
 
