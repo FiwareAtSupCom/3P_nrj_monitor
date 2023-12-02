@@ -52,3 +52,7 @@ curl -iX POST \
     }
   }
 }'
+
+
+curl -X GET \
+  --url 'http://localhost:1026/v2/subscriptions'
