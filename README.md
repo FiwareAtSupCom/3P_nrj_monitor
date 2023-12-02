@@ -171,7 +171,7 @@ The data we will use is:
 • dateModified: Timestamp of the last modification of the entity.
 
 
-• Power factor :
+• Power factor :  It is the ratio of real power (the power that actually performs the work) to apparent power (the total power in the circuit).
 
 
 The requests for writing IoT systems corresponding to the NGSI are found in the following files: 
