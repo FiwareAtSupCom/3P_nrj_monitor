@@ -2,7 +2,7 @@ SolarEnergy:
   description: A Data Model for Solar Energy generation.
 
   properties:
-    activePower:
+    activePower2:
       description: 'The actual values will beconveyed by subproperties which names will be equal to the name of each of the alternating current phases: L1, L2, L3. '
       properties:
         L1:
@@ -21,7 +21,7 @@ SolarEnergy:
 
 
 
- current:
+ current2:
       description: 'Electrical current. The actual values will be conveyed by one subproperty per alternating current phase and the neutral wire: L1, L2, L3 and N'
       properties:
         L1:
@@ -39,7 +39,7 @@ SolarEnergy:
         units: Ampers (A)
 
 
- powerFactor:
+ powerFactor2:
       description: 'Power factor for each phase. The actual values will be conveyed by one subproperty per alternating current phase: L1, L2 and L3'
       properties:
         L1:
@@ -60,7 +60,7 @@ SolarEnergy:
         type: Property
         units: -1 to +1
 
- dateCreated:
+ dateEnergyMeteringStarted2:
       description: Entity creation timestamp. This will usually be allocated by the storage platform
       format: date-time
       type: string
@@ -68,7 +68,7 @@ SolarEnergy:
         type: Property
 
 
-    dateModified:
+    dateModified2:
       description: Timestamp of the last modification of the entity. This will usually be allocated by the storage platform
       format: date-time
       type: string

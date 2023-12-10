@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "modelTags": "IUDX",
+  "$id": "https://github.com/FiwareAtSupCom/3P_nrj_monitor/edit/main/shema2.json",
+  "title": "Smart Data Models - Solar Energy",
+  "$schemaVersion": "0.0.1",
+  "description": "A Data Model for Solar Energy generation.",
+  "derivedFrom": "https://voc.iudx.org.in/SolarEnergy",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["SolarEnergy"],
+          "description": "Property. NGSI Entity type. It has to be SolarEnergy"
+        },
+         "energyGenerated": {
+                    "type": "number",
+                    "description": "Property. Energy generated over a specific time range from the energy resource corresponding to this observation"
+                },
+        "powerFactor2": {
+          "type": "object",
+          "description": "Property. Model:'http://schema.org/StructuredValue'. Units:'-1 to +1'. Power factor for each phase. The actual values will be conveyed by one subproperty per alternating current phase: L1, L2, and L3",
+          "properties": {
+            "L1": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "L2": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "L3": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            }
+          }
+        },
+        "current2": {
+          "type": "object",
+          "description": "Property. Model:'http://schema.org/StructuredValue'. Units:'Ampers (A)'. Electrical current. The actual values will be conveyed by one subproperty per alternating current phase and the neutral wire: L1, L2, L3, and N",
+          "properties": {
+            "L1": {
+              "type": "number"
+            },
+            "L2": {
+              "type": "number"
+            },
+            "L3": {
+              "type": "number"
+            },
+            "N": {
+              "type": "number"
+            }
+          }
+        },
+        "activePower2": {
+          "type": "object",
+          "description": "Property. Model:'http://schema.org/StructuredValue'. Units:'watt (W)'. Active power consumed per phase. The actual values will be conveyed by subproperties whose names will be equal to the name of each of the alternating current phases: L1, L2, L3.",
+          "properties": {
+            "L1": {
+              "type": "number"
+            },
+            "L2": {
+              "type": "number"
+            },
+            "L3": {
+              "type": "number"
+            }
+          }
+        },
+        "dateEnergyMeteringStarted2": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Property. Model:'https://schema.org/DateTime'. The starting date for metering energy"
+        },
+        "dateModified2": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Property. Model:'https://schema.org/DateTime'. Timestamp of the last modification of the entity"
+        }
+      }
+    }
+  ]
+}

@@ -155,22 +155,23 @@ L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les do
 ## code
 ...
 # NGSI / datamodeles 
+The Data Model intended to measure the electrical energies consumed by an electrical system which uses an Alternating Current (AC) for a three-phase (L1, L2, L3) or single-phase (L) and neutral (N). It integrates the initial version of the data Modem [THREEPHASEMEASUREMENT], extended to also perform single-phase measurements. It includes attributes for various electrical measurements 
 
 The data we will use is:
 
 
-• activeEnergyImport: Imported active energy consumed per phase since the counting start date.
+• activeEnergyImport: Active energy imported i.e. consumed per phase. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilowatt hour'
 
-• activePower: Active power consumed per phase since the counting start date.
+• activePower: Active power consumed per phase. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'Watt'
 
-• current: 'Electric current.
+• current: Electrical current. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'Ampere'
 
 • dateEnergyMeteringStarted: start date of energy metering.
 
 • dateModified: Timestamp of the last modification of the entity.
 
 
-• Power factor :
+• Power factor :  It is the ratio of real power (the power that actually performs the work) to apparent power (the total power in the circuit).
 
 
 The requests for writing IoT systems corresponding to the NGSI are found in the following files: 
@@ -180,9 +181,9 @@ https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE%203%20phases.
 https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/requete%20solar.txt
 
 the common structure within each data entity must be standardized to promote reuse.
-The data model for threephase measurement can be found in the following file: [https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data-model.txt] extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/ACMeasurement/model.yaml
+The data model for threephase measurement can be found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/shema1.json extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/ACMeasurement/schema.json
 
-The data model for solar energy can be found in the following file:https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/solar-data-model extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/SolarEnergy/model.yaml
+The data model for solar energy can be found in the following file:https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/shema2.json extracted from: (https://github.com/smart-data-models/dataModel.Energy/blob/master/SolarEnergy/schema.json)
 
 The digital twin would be constantly updated in real time using data from the ESP. It would reflect fluctuations in power consumed. To enable easy interaction, the digital twin would have a graphical user interface that would provide intuitive visualizations and performance charts.
 
@@ -205,6 +206,12 @@ The choice of technology to use:
 
 Grafana, in this context, appears to be a strong choice due to its ease of use, real-time capabilities, extensive visualization options, and community support, allowing you to focus more on the representation and analysis of the data rather than the complexities of building a visualization platform from scratch.
 
+• Navigate to http://192.168.33.69:3000 and log in with default credentials which are: admin / admin
 
+• Add a new data source using the following parameters:
+![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/05353534-45b8-4cff-b463-c2d188ed272d)
+
+• Import the dashboard located in: grafana_dashboard folder:
+![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/bf60c68b-105e-4d09-82c8-1ff6f713de04)
 
 
