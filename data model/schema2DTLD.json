@@ -1,0 +1,112 @@
+{
+    "@id": "dtmi:com:ngsi-ld:SolarEnergy;0",
+    "@type": "Interface",
+    "@context": "dtmi:dtdl:context;2",
+    "comment": "Smart Data Models - Solar Energy adapted to DTDL from smartdatamodels.org. Source: https://raw.githubusercontent.com/smart-data-models/dataModel.Energy/master/SolarEnergy/schema.json",
+    "description": "A Data Model for Solar Energy generation.",
+    "displayName": "SolarEnergy",
+    "contents": [
+        
+        {
+            "name": "dateEnergyMeteringStarted2",
+            "writable": true,
+            "displayName": "dateEnergyMeteringStarted2",
+            "@type": "Property",
+            "schema": "dateTime",
+            "comment": "Entity creation timestamp. This will usually be allocated by the storage platform."
+        },
+        {
+            "name": "dateModified2",
+            "writable": true,
+            "displayName": "dateModified2",
+            "@type": "Property",
+            "schema": "dateTime",
+            "comment": "Timestamp of the last modification of the entity. This will usually be allocated by the storage platform."
+        },
+        {
+            "name": "description",
+            "writable": true,
+            "displayName": "description",
+            "@type": "Property",
+            "schema": "string",
+            "comment": "A description of this item"
+        },
+        {
+            "name": "energyGenerated",
+            "writable": true,
+            "displayName": "energyGenerated",
+            "@type": "Property",
+            "schema": "long",
+            "comment": "Energy generated over a specific time range from the energy resource corresponding to this observation."
+        },
+        
+        
+        {
+            "@type": "object",
+            "name": "activePower2",
+            "comment": "The actual values will beconveyed by subproperties which names will be equal to the name of each of the alternating current phases: L1, L2, L3. ",
+            "displayName": "activePower2",
+            "fields": [
+                {
+                    "name": "L1",
+                    "schema": "long"
+                },
+                {
+                    "name": "L2",
+                    "schema": "long"
+                },
+                {
+                    "name": "L3",
+                    "schema": "long"
+                }
+            ]
+        },
+        
+        {
+            "@type": "object",
+            "name": "current2",
+            "comment": "Electrical current. The actual values will be conveyed by one subproperty per alternating current phase and the neutral wire: L1, L2, L3 and N.",
+            "displayName": "current2",
+            "fields": [
+                {
+                    "name": "L1",
+                    "schema": "long"
+                },
+                {
+                    "name": "L2",
+                    "schema": "long"
+                },
+                {
+                    "name": "L3",
+                    "schema": "long"
+                },
+                {
+                    "name": "N",
+                    "schema": "long"
+                }
+            ]
+        },
+        
+        {
+            "@type": "object",
+            "name": "powerFactor2",
+            "comment": "Power factor for each phase. The actual values will be conveyed by one subproperty per alternating current phase: L1, L2 and L3",
+            "displayName": "powerFactor2",
+            "fields": [
+                {
+                    "name": "L1",
+                    "schema": "long"
+                },
+                {
+                    "name": "L2",
+                    "schema": "long"
+                },
+                {
+                    "name": "L3",
+                    "schema": "long"
+                }
+            ]
+        },
+       
+    ]
+}
