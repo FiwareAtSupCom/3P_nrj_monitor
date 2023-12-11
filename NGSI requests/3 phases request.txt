@@ -80,7 +80,7 @@ curl -iX POST \
        }
      },
      {
-       "id": "dateModif1",
+       "id": "dateModified1",
        "type": "DateTime",
        "keyValues": {
          "value": "2023-11-19T15:30:00Z"
