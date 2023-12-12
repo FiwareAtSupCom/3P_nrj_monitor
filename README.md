@@ -74,7 +74,7 @@ It is required to have a version of Docker Compose equal to or greater than 3 fo
 # Start Up
 1. ### Wi-Fi Network Setup:
 Ensure your Wi-Fi network is properly configured for connectivity between devices. This is crucial for seamless data transmission.
-2. ### Context Broker (Orion)
+2. ### Context Broker (Orion):
 The FIWARE Orion Context Broker serves as the central hub for managing context data in our IoT system. It receives requests using the NGSI-v2 standard and handles crucial aspects such as data entities, subscriptions, and registrations.
 ### Configuration:
 ```yaml
