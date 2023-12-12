@@ -189,14 +189,14 @@ The data we will use is:
 
 The requests for writing IoT systems corresponding to the NGSI are found in the following files: 
 
-https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/REQUETE%203%20phases.txt 
+https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/NGSI%20requests/3%20phases%20request.txt 
 
-https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/requete%20solar.txt
+https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/NGSI%20requests/solar%20request.txt
 
 the common structure within each data entity must be standardized to promote reuse.
-The data model for threephase measurement can be found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/shema1.json extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/ACMeasurement/schema.json
+The data model for threephase measurement can be found in the following file: https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data%20model/3%20phases%20data%20model.json extracted from: https://github.com/smart-data-models/dataModel.Energy/blob/master/ACMeasurement/schema.json
 
-The data model for solar energy can be found in the following file:https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/shema2.json extracted from: (https://github.com/smart-data-models/dataModel.Energy/blob/master/SolarEnergy/schema.json)
+The data model for solar energy can be found in the following file:https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/data%20model/solar%20data%20model.json extracted from: (https://github.com/smart-data-models/dataModel.Energy/blob/master/SolarEnergy/schema.json)
 
 The digital twin would be constantly updated in real time using data from the ESP. It would reflect fluctuations in power consumed. To enable easy interaction, the digital twin would have a graphical user interface that would provide intuitive visualizations and performance charts.
 
