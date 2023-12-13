@@ -228,3 +228,5 @@ Grafana, in this context, appears to be a strong choice due to its ease of use, 
 ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/bf60c68b-105e-4d09-82c8-1ff6f713de04)
 
 
+• The final result should look like this:
+![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/bd22a2da-d7a3-49b0-a1c3-fc01284fa0b2)
