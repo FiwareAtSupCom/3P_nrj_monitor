@@ -229,4 +229,5 @@ Grafana, in this context, appears to be a strong choice due to its ease of use, 
 
 
 • The final result should look like this:
+
 ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/bd22a2da-d7a3-49b0-a1c3-fc01284fa0b2)
