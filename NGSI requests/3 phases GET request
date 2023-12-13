@@ -1,0 +1,34 @@
+curl -G -X GET \
+  'http://localhost:1026/v2/entities' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/activeEnergyImport1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/activepower1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/current1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/powerfactor1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/dateEnergyMeteringStarted1' \
+  -d 'type=DateTime' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/dateModified1' \
+  -d 'type=DateTime' \
+  -d 'options=keyValues'
