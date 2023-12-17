@@ -18,10 +18,7 @@ When working with a single-phase mains supply and resistive loads, standard math
 
 For a 3-phase supply, we can use three phasors spaced 120° apart to illustrate the relationship between the three voltages. If we were to connect a 3-channel oscilloscope to the supply, the displayed waveform might resemble the following:
 ![MyImage](img/image2.png)
-<video width="560" height="315" controls>
-  <source src="imag/video.mp4" type="video/mp4">
-  Votre navigateur ne prend pas en charge la lecture de la vidéo.
-</video>
+![video](https://docs.openenergymonitor.org/_images/phasors.svg)  
 
 The phasors rotate in sync with the supply frequency, maintaining a 120° separation between each other, as well as between the corresponding voltage waveforms—forming a complete cycle of 360°.
 
