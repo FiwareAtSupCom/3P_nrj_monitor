@@ -18,7 +18,11 @@ When working with a single-phase mains supply and resistive loads, standard math
 
 For a 3-phase supply, we can use three phasors spaced 120° apart to illustrate the relationship between the three voltages. If we were to connect a 3-channel oscilloscope to the supply, the displayed waveform might resemble the following:
 ![MyImage](img/image2.png)
-<iframe width="560" height="315" src="img/video" frameborder="0" allowfullscreen></iframe>
+<video width="560" height="315" controls>
+  <source src="imag/video.mp4" type="video/mp4">
+  Votre navigateur ne prend pas en charge la lecture de la vidéo.
+</video>
+
 The phasors rotate in sync with the supply frequency, maintaining a 120° separation between each other, as well as between the corresponding voltage waveforms—forming a complete cycle of 360°.
 
 This depiction highlights a fundamental characteristic of a 3-phase supply. Taking the voltage as the UK standard of 240 V, which is the voltage between one line and neutral, the arrow's length represents this value. The voltage between any two phases is noticeably larger, precisely √3 times larger, as determined by trigonometry—equivalent to the distance between the tips of the arrows. Thus, the line–line voltage measures 415.7 V (commonly denoted as 415 V). Additionally, the line–line voltages exhibit a phase shift of 30° relative to the line–neutral voltages.
