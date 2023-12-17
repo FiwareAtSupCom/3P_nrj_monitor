@@ -5,7 +5,29 @@ The Three phases Energy analyse and monitor is project that aims to accurately m
 
 ## Project Objectives:
 The central objective of our project is to develop a smart metering system that enables precise and comprehensive measurement of quantitative and qualitative values associated with electric energy production and consumption systems. Unlike the focus on the ADE 9000, our attention is directed towards creating an innovative and high-performance tool that will meet specific needs related to monitoring and optimizing energy processes.
+## Three Phase Power:
+Three-phase power involves three interconnected voltage sources supplying the same load, offering significant advantages over single-phase or two-phase systems. In three-phase power, the voltage or current waves are 120 degrees apart, ensuring perfect balance when summed together. This balance results in continuous and constant power, leading to smoother operation for three-phase motors compared to single-phase motors.
 
+One key benefit is the elimination of the need for a neutral conductor if the currents balance precisely. This is advantageous for power companies, reducing the number of conductors required in overhead lines. The absence of a neutral conductor also contributes to savings in transformer design, as magnetic fluxes naturally balance.
+
+The primary advantage of three-phase power is evident in motors, where the three-phase currents create a rotating magnetic field, allowing the motor to start rotating without requiring additional mechanisms, such as phase shift capacitors or extra windings needed in single-phase motors.
+## Identifying a 3-Phase Supply:
+The straightforward method to determine if you have a 3-phase supply is by locating your meter and distribution board/consumer unit. If you have four relatively thick cables, excluding green or green/yellow earth cables, connecting to the meter, with two going to your consumer unit or fuse-board, then you do not have a three-phase supply. Conversely, if you observe eight reasonably thick cables connected to the meter, with four going to your consumer unit or fuse-board, and your main circuit breaker has 3 or 4 sections operated by a single lever – referred to as a 3-pole or 4-pole linked MCB – then you indeed have a three-phase supply.
+## Mathematics of a 3-Phase Supply:
+When working with a single-phase mains supply and resistive loads, standard mathematics (V = I.R, P = V2 / R, etc.) suffices. However, when dealing with reactive components such as inductors and capacitors, and a graphical representation is needed to visualize the relationships between voltages and currents in different parts of the circuit, we rely on a tool known as a 'phasor.' A phasor is essentially a rotating line with length and direction, where the length represents the magnitude of voltage or current, and the angle signifies its relationship to a chosen reference point.
+
+For a 3-phase supply, we can use three phasors spaced 120° apart to illustrate the relationship between the three voltages. If we were to connect a 3-channel oscilloscope to the supply, the displayed waveform might resemble the following:
+![MyImage](img/image2.png)
+![video](img/video.mp4)
+The phasors rotate in sync with the supply frequency, maintaining a 120° separation between each other, as well as between the corresponding voltage waveforms—forming a complete cycle of 360°.
+
+This depiction highlights a fundamental characteristic of a 3-phase supply. Taking the voltage as the UK standard of 240 V, which is the voltage between one line and neutral, the arrow's length represents this value. The voltage between any two phases is noticeably larger, precisely √3 times larger, as determined by trigonometry—equivalent to the distance between the tips of the arrows. Thus, the line–line voltage measures 415.7 V (commonly denoted as 415 V). Additionally, the line–line voltages exhibit a phase shift of 30° relative to the line–neutral voltages.
+
+For power delivery in a 3-phase system, the power is three times that of a single phase. Assuming unity power factor, this translates to 3 times line-neutral voltage times line current or √3 times line-line voltage times line current.
+
+The diagram, originally depicting the relationship between the 3 voltages, is not limited to voltages alone; it can also represent currents. Its true value emerges when both voltages and currents are concurrently illustrated.
+### Measuring 3-Phase Power with ADE9000:
+![image](img/ADE9000.png)
 
 ## Systèmes monitorés:
 The three-phase energy measurement and monitoring system could be utilized to monitor various electric energy production and consumption systems. Here are some examples of systems that the system can monitor:
