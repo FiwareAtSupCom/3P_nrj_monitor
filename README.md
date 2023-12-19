@@ -30,20 +30,34 @@ The diagram, originally depicting the relationship between the 3 voltages, is no
 ### Measuring 3-Phase Power with ADE9000:
 ![image](img/ADE9000.png)
 Analog Operation of ADE9000: 
+
 Measurement of Analog Signals: ADE9000 measures electrical signals such as voltage and current in electrical power production and consumption systems.
 Analog-to-Digital Converters (ADC):Captured analog signals are converted to digital signals using high-resolution integrated Analog-to-Digital Converters (ADC). This ensures high precision in measuring electrical quantities.
+
 Analog Filtering: Analog signals may be susceptible to interference and noise. ADE9000 can incorporate analog filters to eliminate undesirable noise, ensuring reliable measurements.
+
 Digital Operation of ADE9000: 
+
 Digital Signal Processing (DSP): Obtained digital signals are processed digitally by a Digital Signal Processor (DSP). The DSP performs complex calculations to derive electrical parameters such as active power, reactive power, power factor, etc.
+
 Digital Storage: Measurement and calculation results are stored digitally, typically in the integrated memory of ADE9000. This data is then ready to be transmitted to other components of the system.
+
 Digital Communication: Data is transmitted via the ISP interface to an ESP8266.
+
 Operation of ISP:
+
 Data Encoding: The data to be transmitted is encoded according to a specific format defined by the ISP protocol. This may include information such as headers, addresses, payload data, and control bits. Encoding ensures a consistent structure for transmission.
+
 Commands and Responses: The ISP protocol defines specific commands that instruct the receiver (in this case, the ESP8266) on actions to take. For instance, there might be a command to request data transmission, another to indicate the end of transmission, etc. Responses confirm the successful reception of commands.
+
 Serial Transmission: Most ISP protocols use serial transmission to send data from one component to another. This means that data is sent one bit at a time over a dedicated communication line.
+
 Clock Management: Some ISP protocols may use a shared clock between the transmitter and receiver to synchronize transmission. This ensures that bits are read and written at the correct timing.
+
 Checksum or CRC: To ensure data integrity, the ISP protocol may include a checksum or cyclic redundancy check (CRC). This allows the receiver to verify if the data has been transmitted correctly.
+
 Start and Stop Bits: The transmitted data may be framed by start bits and stop bits, defining the beginning and end of each data byte.
+
 ## Systèmes monitorés:
 The three-phase energy measurement and monitoring system could be utilized to monitor various electric energy production and consumption systems. Here are some examples of systems that the system can monitor:
 
