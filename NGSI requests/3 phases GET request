@@ -3,8 +3,23 @@ curl -G -X GET \
   -d 'type=object' \
   -d 'options=keyValues'
 
-curl -G -X GET \
+  curl -G -X GET \
   'http://localhost:1026/v2/entities/activeEnergyImport1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+ curl -G -X GET \
+  'http://localhost:1026/v2/entities/reactiveEnergyImport1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/activeEnergyExport1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
+  'http://localhost:1026/v2/entities/reactiveEnergyExport1' \
   -d 'type=object' \
   -d 'options=keyValues'
 
@@ -14,12 +29,17 @@ curl -G -X GET \
   -d 'options=keyValues'
 
 curl -G -X GET \
+  'http://localhost:1026/v2/entities/reactivepower1' \
+  -d 'type=object' \
+  -d 'options=keyValues'
+
+curl -G -X GET \
   'http://localhost:1026/v2/entities/current1' \
   -d 'type=object' \
   -d 'options=keyValues'
 
 curl -G -X GET \
-  'http://localhost:1026/v2/entities/powerfactor1' \
+  'http://localhost:1026/v2/entities/powerfactotr1' \
   -d 'type=object' \
   -d 'options=keyValues'
 
