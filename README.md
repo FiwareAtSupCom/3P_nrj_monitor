@@ -292,3 +292,20 @@ Grafana, in this context, appears to be a strong choice due to its ease of use, 
 • The final result should look like this:
 
 ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/2fbb0737-44be-435b-8f97-ec5afa3f417e)
+
+• list of views and descriptions:
+- 1st view composed from the graph of power (kw) over the last 24h, the actual value of power (kw) and the day of measurement.
+- 2nd view represent a bill, it composed from the Todays usage, todays price, monthly use , months price.
+- 3rd view the graph of the daily electricity consumption and the daily electricity production.
+- 4th view represent the localisation of the AD9000 device in a map.
+
+  ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/fade50cd-3f90-48ae-8913-b286651a43f8)
+
+  ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/6429525a-0307-4ff1-bfd2-32fcb8a24a0c)
+
+  ![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/d7f91bf5-f67d-4b18-85d0-1909f9920886)
+
+The mobile application:
+![image](https://github.com/FiwareAtSupCom/3P_nrj_monitor/assets/93084127/e6ca7f17-8f76-4dbd-84ed-29cc290a8a8e)
+
+
