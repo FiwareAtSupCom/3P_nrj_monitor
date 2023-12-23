@@ -33,8 +33,6 @@ volatile PeriodRegs* Frequency;
 volatile CurrentTHDRegs* CurrentTHD;
 volatile VoltageTHDRegs* VoltageTHD;
 
-int StoreAddress;
-
 volatile uint8_t EnergySamples;
 
 extern struct tm timeinfo;
@@ -343,55 +341,39 @@ void EnergyMonitorClass::PublishcurrentTHD(char* sub_Topic){
 
 
 void EnergyMonitorClass::InitEnergyCounter(){
+  if(MeasureStartTime()=="NOW"){
   EEPROM.writeFloat(CounterA_add,0);
   EEPROM.commit();
   EEPROM.writeFloat(CounterB_add,0);
   EEPROM.commit();
   EEPROM.writeFloat(CounterC_add,0);
   EEPROM.commit();
+  }
 }
 
 void EnergyMonitorClass::StoreCountedEnergy(){
   float_t CounterA=EEPROM.readFloat(CounterA_add);
   EEPROM.writeFloat(CounterA_add,CounterA+((ActiveEnergy->ActiveEnergy_A)*EnergyConversionConstant));
+  EEPROM.commit();
   float_t CounterB=EEPROM.readFloat(CounterB_add);
   EEPROM.writeFloat(CounterB_add,CounterB+((ActiveEnergy->ActiveEnergy_B)*EnergyConversionConstant));
+  EEPROM.commit();
   float_t CounterC=EEPROM.readFloat(CounterC_add);
   EEPROM.writeFloat(CounterC_add,CounterC+((ActiveEnergy->ActiveEnergy_C)*EnergyConversionConstant));
+  EEPROM.commit();
 }
 
-void EnergyMonitorClass::ReadEnergyCounter(){
-  float_t CounterA=EEPROM.readFloat(CounterA_add);
-  float_t CounterB=EEPROM.readFloat(CounterB_add);
-  float_t CounterC=EEPROM.readFloat(CounterC_add);
-  Serial.println(CounterA);
-  Serial.println(CounterB);
-  Serial.println(CounterC);
+float_t EnergyMonitorClass::ReadEnergyCounter(uint8_t phase){
+
+  if (phase==1){
+    return(EEPROM.readFloat(CounterA_add));
+  }else if(phase==2){
+    return(EEPROM.readFloat(CounterB_add));
+  }else if (phase==3){
+    return(EEPROM.readFloat(CounterC_add));
+  }
 }
 
-
-
-String EnergyMonitorClass::Read_String_From_ESP32(int* address)
-{
-    if(*address<=EEPROM_SIZE){
-    String Value=EEPROM.readString(*address);
-    *address+=Value.length();
-    return Value;
-    }else{
-      Serial.println("outofrange");
-    }
-}
-
-void EnergyMonitorClass::Write_String_in_ESP32(int* address, String str)
-{
-    if(*address+str.length()<=EEPROM_SIZE){ 
-    EEPROM.writeString(*address,str);
-    EEPROM.commit();
-    *address+=str.length();
-    }else{
-      Serial.println("outofrange");
-    }
-}
 
 
 void EnergyMonitorClass::store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue){
@@ -476,10 +458,10 @@ String EnergyMonitorClass::MeasureStartTime(){
   String Value=EEPROM.readString(MeasureStartTime_add);
   if(!(Value.charAt(Value.length()-1) == 'Z')){
     get_Time(&timeinfo);
-    char str[64];
-    strftime(str, 64, "%Y-%m-%dT%H:%M:%SZ", &timeinfo);
+    char str[21];
+    strftime(str, 21, "%Y-%m-%dT%H:%M:%SZ", &timeinfo);
     EEPROM.writeString(MeasureStartTime_add,str);
-    return str;
+    return "NOW";
   }
   return Value;
 }
@@ -507,8 +489,7 @@ void EnergyMonitorClass::energy_meter_setup()
 
   CurrentTHD = new CurrentTHDRegs;
   VoltageTHD = new VoltageTHDRegs;
-  
-  StoreAddress=12;
+
   EEPROM.begin(EEPROM_SIZE);
   InitEnergyCounter();
 

@@ -31,15 +31,11 @@ class EnergyMonitorClass
 
     ///
 
-    String Read_String_From_ESP32(int* address);
-
-    void Write_String_in_ESP32(int* address, String str);
-
     void InitEnergyCounter();
 
     void StoreCountedEnergy();
 
-    void ReadEnergyCounter();
+    float_t ReadEnergyCounter(uint8_t phase);
 
     void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
 
