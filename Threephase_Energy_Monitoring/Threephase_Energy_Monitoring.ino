@@ -10,7 +10,7 @@
 ADE9000Class ade9000;
 EnergyMonitorClass monitor;
 #define SPI_SPEED 5000000     //SPI Speed
-#define CS_PIN 8 //8-->Arduino Zero. 16-->ESP8266 
+#define CS_PIN 15 //8-->Arduino Zero. 16-->ESP8266 
 #define ADE9000_RESET_PIN 5 //Reset Pin on HW
 #define PM_1 4              //PM1 Pin: 4-->Arduino Zero. 15-->ESP8266 
 
@@ -40,7 +40,7 @@ WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
 /*Static address of broker*/
-const char broker[]="192.168.1.10";
+const char broker[]="192.168.1.16";
 int port =1883;
 
 extern volatile ActivePowerRegs* ActivePower;
@@ -110,10 +110,11 @@ void loop() {
 
   if (WiFi.status()!= WifiStatus){
     if (WiFi.status() != WL_CONNECTED){
-    /*wifi reconnect*/
-    WiFi.reconnect();
     digitalWrite(2, HIGH);
     monitor.Change_timers_config(3);
+    /*wifi reconnect*/
+    WiFi.reconnect();
+    delay(1000);
   
   }else{
     digitalWrite(2, LOW);
@@ -134,6 +135,8 @@ void loop() {
   if (xSemaphoreTake(powerSemaphore, 0) == pdTRUE){
     if (WiFi.status() == WL_CONNECTED){
       monitor.PublishActivePower("ActivePower");
+      monitor.PublishReactivePower("ReactivePower");
+      monitor.PublishApparentPower("ApparentPower");
     }else{
        monitor.store_data("ActivePower/L1",&(ActivePower->ActivePowerReg_A),myQueue);
        monitor.store_data("ActivePower/L2",&(ActivePower->ActivePowerReg_B),myQueue);
@@ -193,7 +196,7 @@ void loop() {
       delay(1000);
     }else{
       Serial.println("wifi ON");
-      WiFi.reconnect();
+      //WiFi.reconnect();
       delay(1000);
     }
   }
