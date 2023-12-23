@@ -113,9 +113,7 @@ void loop() {
     /*wifi reconnect*/
     WiFi.reconnect();
     digitalWrite(2, HIGH);
-     monitor.Change_Powertimer_config(3);
-     monitor.Change_Energytimer_config(3);
-     monitor.Change_CFtimer_config(3);
+    monitor.Change_timers_config(3);
   
   }else{
     digitalWrite(2, LOW);
@@ -123,9 +121,7 @@ void loop() {
     mqttClient.connect(broker,port);
     }
      monitor.send_data(myQueue);
-     monitor.Change_Powertimer_config(1);
-     monitor.Change_Energytimer_config(1);
-     monitor.Change_CFtimer_config(1);
+     monitor.Change_timers_config(1);
   }
   WifiStatus=WiFi.status();
   }

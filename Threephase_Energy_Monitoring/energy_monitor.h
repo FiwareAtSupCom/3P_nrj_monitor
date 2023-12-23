@@ -45,11 +45,7 @@ class EnergyMonitorClass
 
     void send_data(std::queue<struct dataNode>& myQueue);
 
-    void Change_Powertimer_config(unsigned int Factor);
-
-    void Change_Energytimer_config(unsigned int Factor);
-
-    void Change_CFtimer_config(unsigned int Factor);
+    void Change_timers_config(unsigned int Factor);
 
     String MeasureStartTime();
 

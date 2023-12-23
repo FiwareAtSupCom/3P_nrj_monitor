@@ -449,26 +449,27 @@ void EnergyMonitorClass::send_data(std::queue<struct dataNode>& myQueue){
   
 }
 
-void EnergyMonitorClass::Change_Powertimer_config(unsigned int Factor){
+void EnergyMonitorClass::Change_timers_config(unsigned int Factor){
   // Detach the existing ISR
   timerDetachInterrupt(Powertimer);
   timerAttachInterrupt(Powertimer, &PowertimerISR, true);
   timerAlarmWrite(Powertimer, Factor*PowertimerFactor, true);      
   timerAlarmEnable(Powertimer);
-}
 
-void EnergyMonitorClass::Change_Energytimer_config(unsigned int Factor){
   timerDetachInterrupt(Energytimer);
   timerAttachInterrupt(Energytimer, &EnergytimerISR, true);
   timerAlarmWrite(Energytimer, Factor*AccumulatedPowertimerFactor, true);      
   timerAlarmEnable(Energytimer);
-}
 
-void EnergyMonitorClass::Change_CFtimer_config(unsigned int Factor){
   timerDetachInterrupt(CFtimer);
   timerAttachInterrupt(CFtimer, &CFtimerISR, true);
   timerAlarmWrite(CFtimer, Factor*VCFtimerFactor, true);      
   timerAlarmEnable(CFtimer);
+
+  timerDetachInterrupt(THDtimer);
+  timerAttachInterrupt(THDtimer, &THDtimerISR, true);
+  timerAlarmWrite(THDtimer, Factor*THDtimerFactor, true);      
+  timerAlarmEnable(THDtimer);
 }
 
 String EnergyMonitorClass::MeasureStartTime(){
