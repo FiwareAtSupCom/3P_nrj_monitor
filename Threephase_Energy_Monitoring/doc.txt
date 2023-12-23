@@ -1,0 +1,6 @@
+wifi lost
+ota 
+temp limit
+
+
+512bytes ->4 bytes(32bits) ->128 vals (conf parameters)//circulaire??
