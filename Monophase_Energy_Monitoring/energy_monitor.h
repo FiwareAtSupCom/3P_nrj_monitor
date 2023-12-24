@@ -12,6 +12,8 @@
 #include <ArduinoMqttClient.h>
 #include <queue>
 
+extern const char broker[];
+extern int port;
 
 extern hw_timer_t * Powertimer; 
 extern hw_timer_t * Energytimer;
@@ -22,6 +24,8 @@ extern struct tm timeinfo;
 
 extern WiFiClient wifiClient;
 extern MqttClient mqttClient;
+
+extern std::queue<struct dataNode> myQueue;
 
 extern const char root_Topic[];
 
@@ -47,6 +51,10 @@ class EnergyMonitorClass
 		EnergyMonitorClass();
 
     ///
+
+    void handleWifiStatus(wl_status_t* WifiStatus);
+
+    void checkBroker();
 
     void InitEnergyCounter();
 

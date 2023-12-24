@@ -29,6 +29,7 @@ wl_status_t WifiStatus;
 
 struct tm timeinfo;
 extern volatile SemaphoreHandle_t powerSemaphore;
+extern volatile SemaphoreHandle_t AccumulationSemaphore;
 extern volatile SemaphoreHandle_t energySemaphore;
 extern volatile SemaphoreHandle_t cfSemaphore;
 extern volatile SemaphoreHandle_t THDSemaphore;
@@ -49,6 +50,7 @@ extern volatile ReactivePowerRegs* ReactivePower;
 extern volatile ApparentPowerRegs* ApparentPower;
 
 extern volatile ActiveEnergyperH* ActiveEnergy;
+extern volatile ReactiveEnergyperH* ReactiveEnergy;
 
 extern volatile VoltageRMSRegs* VoltageRMS;
 extern volatile CurrentRMSRegs* CurrentRMS;
@@ -72,6 +74,13 @@ void setup()
   ade9000.SPI_Write_16(ADDR_RUN,0x1); //Set RUN=1 to turn on DSP. Uncomment if SetupADE9000 function is not used
   Serial.print("RUN Register: ");
   Serial.println(ade9000.SPI_Read_16(ADDR_RUN),HEX);
+
+	if ((ade9000.SPI_Read_16(ADDR_RUN) != 0x01)) {
+    Serial.println("ADE9153A Shield not detected. Plug in Shield and reset the Arduino");
+    while ((ade9000.SPI_Read_16(ADDR_RUN) != 0x01)) {     //Hold until arduino is reset
+      delay(1000);
+    }
+  }
    // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) { 
@@ -89,10 +98,11 @@ void setup()
   Serial.println("Connected to MQTT Broker");
   
 
-    powerSemaphore = xSemaphoreCreateBinary();
-    energySemaphore = xSemaphoreCreateBinary();
-    cfSemaphore = xSemaphoreCreateBinary();
-    THDSemaphore = xSemaphoreCreateBinary();
+  powerSemaphore = xSemaphoreCreateBinary();
+  AccumulationSemaphore=xSemaphoreCreateBinary();
+  energySemaphore = xSemaphoreCreateBinary();
+  cfSemaphore = xSemaphoreCreateBinary();
+  THDSemaphore = xSemaphoreCreateBinary();
   //button
   pinMode(0, INPUT);
   pinMode(2, OUTPUT);
@@ -109,84 +119,59 @@ void setup()
 
 void loop() {
 
-  if (WiFi.status()!= WifiStatus){
-    if (WiFi.status() != WL_CONNECTED){
-    digitalWrite(2, HIGH);
-    monitor.Change_timers_config(3);
-    /*wifi reconnect*/
-    WiFi.reconnect();
-    delay(1000);
-  
-  }else{
-    digitalWrite(2, LOW);
-    if (!mqttClient.connected()){
-    mqttClient.connect(broker,port);
-    }
-     monitor.send_data(myQueue);
-     monitor.Change_timers_config(1);
-  }
-  WifiStatus=WiFi.status();
-  }
-  /*verify connection with the broker*/
-  if (!mqttClient.connected()){
-    mqttClient.connect(broker,port);
-  }
+  monitor.handleWifiStatus(&WifiStatus);
+
+  monitor.checkBroker();
+
   ArduinoOTA.handle();
   get_Time(&timeinfo);
   if (xSemaphoreTake(powerSemaphore, 0) == pdTRUE){
-    if (WiFi.status() == WL_CONNECTED){
-      monitor.PublishActivePower("ActivePower");
-      monitor.PublishReactivePower("ReactivePower");
-      monitor.PublishApparentPower("ApparentPower");
-    }else{
-       monitor.store_data("ActivePower/L1",&(ActivePower->ActivePowerReg_A),myQueue);
-       monitor.store_data("ActivePower/L2",&(ActivePower->ActivePowerReg_B),myQueue);
-       monitor.store_data("ActivePower/L3",&(ActivePower->ActivePowerReg_C),myQueue);
-       
-    } 
+    ade9000.ReadActivePowerRegs(ActivePower);
+    ade9000.ReadReactivePowerRegs(ReactivePower);
+    ade9000.ReadApparentPowerRegs(ApparentPower);
+    monitor.PublishActivePower("ActivePower");
+    monitor.PublishReactivePower("ReactivePower");
+    monitor.PublishApparentPower("ApparentPower");
+  }
+  if (xSemaphoreTake(AccumulationSemaphore, 0) == pdTRUE){
+    ///////  ENERGY  Read energy register with reset mode page(21)
+    ade9000.AccumulateActiveEnergy(ActiveEnergy);
+    ade9000.AccumulateReactiveEnergy(ReactiveEnergy);
   }
   if (xSemaphoreTake(energySemaphore, 0) == pdTRUE){
-    if (WiFi.status() == WL_CONNECTED){
-    monitor.PublishtotalActiveEnergy("totalActiveEnergy"); 
     monitor.StoreCountedEnergy();
+    monitor.PublishtotalActiveEnergy("totalActiveEnergy"); 
     ade9000.InitActiveEnergy(ActiveEnergy);
     monitor.PublishtotalReactiveEnergy("totalReactiveEnergy");
     ade9000.InitReactiveEnergy(ReactiveEnergy);
-    }else{
-       monitor.store_data("totalActiveEnergy/L1",&(ActiveEnergy->ActiveEnergy_A),myQueue);
-       monitor.store_data("totalActiveEnergy/L2",&(ActiveEnergy->ActiveEnergy_B),myQueue);
-       monitor.store_data("totalActiveEnergy/L3",&(ActiveEnergy->ActiveEnergy_C),myQueue);
-    } 
   } 
   if (xSemaphoreTake(cfSemaphore, 0) == pdTRUE){
-    if (WiFi.status() == WL_CONNECTED){
+    ade9000.ReadCurrentRMSRegs(CurrentRMS);
+    ade9000.ReadVoltageRMSRegs(VoltageRMS);
+    ade9000.ReadPowerFactorRegsnValues(PowerFactor);
+    ade9000.ReadPeriodRegsnValues(Frequency);
     monitor.PublishpowerFactor("powerFactor"); 
     monitor.Publishvoltage("voltage");
     monitor.Publishcurrent("current");
     monitor.Publishfrequency("frequency");
-    }else{
-       monitor.store_data("powerFactor/L1",&(PowerFactor->PowerFactorValue_A),myQueue);
-       monitor.store_data("powerFactor/L2",&(PowerFactor->PowerFactorValue_B),myQueue);
-       monitor.store_data("powerFactor/L3",&(PowerFactor->PowerFactorValue_C),myQueue);
-       monitor.store_data("voltage/L1",&(VoltageRMS->VoltageRMSReg_A),myQueue);
-       monitor.store_data("voltage/L2",&(VoltageRMS->VoltageRMSReg_B),myQueue);
-       monitor.store_data("voltage/L3",&(VoltageRMS->VoltageRMSReg_C),myQueue);
-    } 
   } 
   if (xSemaphoreTake(THDSemaphore, 0) == pdTRUE){
-    if (WiFi.status() == WL_CONNECTED){
+    ade9000.ReadVoltageTHDRegsnValues(VoltageTHD);
+    ade9000.ReadCurrentTHDRegsnValues(CurrentTHD);
     monitor.PublishvoltageTHD("voltageTHD");
     monitor.PublishcurrentTHD("currentTHD");
-    }else{
-       monitor.store_data("voltageTHD/L1",&(VoltageTHD->VoltageTHDValue_A),myQueue);
-       monitor.store_data("voltageTHD/L2",&(VoltageTHD->VoltageTHDValue_B),myQueue);
-       monitor.store_data("voltageTHD/L3",&(VoltageTHD->VoltageTHDValue_C),myQueue);
-       monitor.store_data("currentTHD/L1",&(CurrentTHD->CurrentTHDValue_A),myQueue);
-       monitor.store_data("currentTHD/L2",&(CurrentTHD->CurrentTHDValue_B),myQueue);
-       monitor.store_data("currentTHD/L3",&(CurrentTHD->CurrentTHDValue_C),myQueue);
-    } 
   }
 
+  disconnectWifi();
+  
+  //Serial.println(monitor.ReadEnergyCounter());
+  //Serial.println(monitor.MeasureStartTime());
+  
+  yield();
+
+}
+
+void disconnectWifi(void){
   // If button is pressed
   if (digitalRead(0) == LOW) {
     
@@ -194,12 +179,9 @@ void loop() {
       
       Serial.println("wifi OFF");
       WiFi.disconnect();
-      delay(1000);
+      delay(100);
     }
   }
-  
-  yield();
-
 }
 
 
