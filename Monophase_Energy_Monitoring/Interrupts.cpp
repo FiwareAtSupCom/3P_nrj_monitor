@@ -17,9 +17,7 @@ void IRAM_ATTR PowertimerISR() {
   portENTER_CRITICAL_ISR(&timerMux);
   
   ///////  POWER
-  ade9000.ReadActivePowerRegs(ActivePower);
-  ade9000.ReadReactivePowerRegs(ReactivePower);
-  ade9000.ReadApparentPowerRegs(ApparentPower);
+  ade9153A.ReadPowerRegs(Power);
   
   portEXIT_CRITICAL_ISR(&timerMux);
   xSemaphoreGiveFromISR(powerSemaphore, NULL);
@@ -31,8 +29,8 @@ void IRAM_ATTR EnergytimerISR() {
 
     portENTER_CRITICAL_ISR(&timerMux);
     ///////  ENERGY  Read energy register with reset mode page(21)
-    ade9000.AccumulateActiveEnergy(ActiveEnergy);
-    ade9000.AccumulateReactiveEnergy(ReactiveEnergy);
+    ade9153A.AccumulateActiveEnergy(Energy);
+    ade9153A.AccumulateReactiveEnergy(Energy);
     EnergySamples++;
     if (EnergySamples*AccumulatedPowertimerFactor>=EnergytimerFactor){
     EnergySamples=0;
@@ -45,10 +43,8 @@ void IRAM_ATTR CFtimerISR() {
   
   portENTER_CRITICAL_ISR(&timerMux);
   
-  ade9000.ReadCurrentRMSRegs(CurrentRMS);
-  ade9000.ReadVoltageRMSRegs(VoltageRMS);
-  ade9000.ReadPowerFactorRegsnValues(PowerFactor);
-  ade9000.ReadPeriodRegsnValues(Frequency);
+  ade9153A.ReadRMSRegs(RMS);
+  ade9153A.ReadPQRegs(PQ);
   
   portEXIT_CRITICAL_ISR(&timerMux);
   xSemaphoreGiveFromISR(cfSemaphore, NULL);
@@ -58,8 +54,7 @@ void IRAM_ATTR THDtimerISR() {
   
   portENTER_CRITICAL_ISR(&timerMux);
 
-  ade9000.ReadVoltageTHDRegsnValues(VoltageTHD);
-  ade9000.ReadCurrentTHDRegsnValues(CurrentTHD);
+  ade9153A.ReadRMSRegs(RMS);
   
   portEXIT_CRITICAL_ISR(&timerMux);
   xSemaphoreGiveFromISR(THDSemaphore, NULL);

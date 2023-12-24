@@ -3,29 +3,17 @@
 
 #define EEPROM_SIZE 512
 
-#define CounterA_add 0
+#define Counter_add 0
 
-#define CounterB_add 4
-
-#define CounterC_add 8
-
-#define MeasureStartTime_add 12
+#define MeasureStartTime_add 4
 
 
-volatile ActivePowerRegs* ActivePower;
-volatile ReactivePowerRegs* ReactivePower;
-volatile ApparentPowerRegs* ApparentPower;
+volatile PowerRegs* Power;
 
-volatile ActiveEnergyperH* ActiveEnergy;
-volatile ReactiveEnergyperH* ReactiveEnergy;
+volatile EnergyRegs* Energy;
 
-volatile VoltageRMSRegs* VoltageRMS;
-volatile CurrentRMSRegs* CurrentRMS;
-volatile PowerFactorRegs* PowerFactor;
-volatile PeriodRegs* Frequency;
-
-volatile CurrentTHDRegs* CurrentTHD;
-volatile VoltageTHDRegs* VoltageTHD;
+volatile RMSRegs* RMS;
+volatile PQRegs* PQ;
 
 volatile uint8_t EnergySamples;
 
@@ -65,15 +53,15 @@ void EnergyMonitorClass::PublishActivePower(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Power/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ActivePower->ActivePowerReg_A)*PowerConversionConstant);
+    mqttClient.print((Power->ActivePowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Power/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ActivePower->ActivePowerReg_B)*PowerConversionConstant);
+    mqttClient.print((Power->ActivePowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Power/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ActivePower->ActivePowerReg_C)*PowerConversionConstant);
+    mqttClient.print((Power->ActivePowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     PublishtotalActivePower("totalActivePower");
     PublishdateObserved("dateObserved");
@@ -84,7 +72,7 @@ void EnergyMonitorClass::PublishtotalActivePower(char* sub_Topic){
   char topic[100];
   snprintf(topic, sizeof(topic), "%s/Power/%s", root_Topic, sub_Topic);
   mqttClient.beginMessage(topic);
-  mqttClient.print(((ActivePower->ActivePowerReg_A)+(ActivePower->ActivePowerReg_B)+(ActivePower->ActivePowerReg_C))*PowerConversionConstant);
+  mqttClient.print((Power->ActivePowerValue)*PowerConversionConstant);
   mqttClient.endMessage();
   
 }
@@ -94,15 +82,15 @@ void EnergyMonitorClass::PublishReactivePower(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Power/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ReactivePower->ReactivePowerReg_A)*PowerConversionConstant);
+    mqttClient.print((Power->FundReactivePowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Power/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ReactivePower->ReactivePowerReg_B)*PowerConversionConstant);
+    mqttClient.print((Power->FundReactivePowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Power/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ReactivePower->ReactivePowerReg_C)*PowerConversionConstant);
+    mqttClient.print((Power->FundReactivePowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     PublishtotalReactivePower("totalReactivePower");
     PublishdateObserved("dateObserved");
@@ -113,7 +101,7 @@ void EnergyMonitorClass::PublishtotalReactivePower(char* sub_Topic){
   char topic[100];
   snprintf(topic, sizeof(topic), "%s/Power/%s", root_Topic, sub_Topic);
   mqttClient.beginMessage(topic);
-  mqttClient.print(((ReactivePower->ReactivePowerReg_A)+(ReactivePower->ReactivePowerReg_B)+(ReactivePower->ReactivePowerReg_C))*PowerConversionConstant);
+  mqttClient.print((Power->FundReactivePowerValue)*PowerConversionConstant);
   mqttClient.endMessage();
   
 }
@@ -122,15 +110,15 @@ void EnergyMonitorClass::PublishApparentPower(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Power/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ApparentPower->ApparentPowerReg_A)*PowerConversionConstant);
+    mqttClient.print((Power->ApparentPowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Power/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ApparentPower->ApparentPowerReg_B)*PowerConversionConstant);
+    mqttClient.print((Power->ApparentPowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Power/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((ApparentPower->ApparentPowerReg_C)*PowerConversionConstant);
+    mqttClient.print((Power->ApparentPowerValue)*PowerConversionConstant);
     mqttClient.endMessage();
     PublishtotalApparentPower("totalApparentPower");
     PublishdateObserved("dateObserved");
@@ -141,7 +129,7 @@ void EnergyMonitorClass::PublishtotalApparentPower(char* sub_Topic){
   char topic[100];
   snprintf(topic, sizeof(topic), "%s/Power/%s", root_Topic, sub_Topic);
   mqttClient.beginMessage(topic);
-  mqttClient.print(((ApparentPower->ApparentPowerReg_A)+(ApparentPower->ApparentPowerReg_B)+(ApparentPower->ApparentPowerReg_C))*PowerConversionConstant);
+  mqttClient.print((Power->ApparentPowerValue)*PowerConversionConstant);
   mqttClient.endMessage();
   
 }
@@ -153,15 +141,15 @@ void EnergyMonitorClass::PublishpowerFactor(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_A));
+    mqttClient.print((PQ->PowerFactorValue));
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_B));
+    mqttClient.print((PQ->PowerFactorValue));
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_C));
+    mqttClient.print((PQ->PowerFactorValue));
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -171,15 +159,15 @@ void EnergyMonitorClass::PublishdisplacementpowerFactor(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_A));
+    mqttClient.print((PQ->PowerFactorValue));
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_B));
+    mqttClient.print((PQ->PowerFactorValue));
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_C));
+    mqttClient.print((PQ->PowerFactorValue));
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -189,15 +177,15 @@ void EnergyMonitorClass::Publishvoltage(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_A)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_B)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_C)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -207,19 +195,19 @@ void EnergyMonitorClass::Publishcurrent(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentRMS->CurrentRMSReg_A)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentRMS->CurrentRMSReg_B)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentRMS->CurrentRMSReg_C)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Currents/%s/N", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentRMS->CurrentRMSReg_N)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -229,15 +217,15 @@ void EnergyMonitorClass::PublishvoltagePhaseToPhase(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_A)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_B)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_C)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -245,12 +233,9 @@ void EnergyMonitorClass::PublishvoltagePhaseToPhase(char* sub_Topic){
 void EnergyMonitorClass::Publishfrequency(char* sub_Topic){
  
   char topic[100];
-  float farestdist;
-  farestdist=max(abs((Frequency->FrequencyValue_A)-50),abs((Frequency->FrequencyValue_B)-50));
-  farestdist=max(abs((Frequency->FrequencyValue_C)-50),farestdist);
   snprintf(topic, sizeof(topic), "%s/%s", root_Topic, sub_Topic);
   mqttClient.beginMessage(topic);
-  mqttClient.print(farestdist+50);
+  mqttClient.print(PQ->FrequencyValue);
   mqttClient.endMessage();
   PublishdateObserved("dateObserved");
 }
@@ -260,15 +245,15 @@ void EnergyMonitorClass::PublishvoltageTHD(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageTHD->VoltageTHDValue_A)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageTHD->VoltageTHDValue_B)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageTHD->VoltageTHDValue_C)*VoltageConversionConstant);
+    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -278,15 +263,15 @@ void EnergyMonitorClass::PublishcurrentTHD(char* sub_Topic){
     char topic[100];
     snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentTHD->CurrentTHDValue_A)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentTHD->CurrentTHDValue_B)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentTHD->CurrentTHDValue_C)*CurrentConversionConstant);
+    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
 }
@@ -295,36 +280,23 @@ void EnergyMonitorClass::PublishcurrentTHD(char* sub_Topic){
 
 void EnergyMonitorClass::InitEnergyCounter(){
   if(MeasureStartTime()=="NOW"){
-  EEPROM.writeFloat(CounterA_add,0);
+  EEPROM.writeFloat(Counter_add,0);
   EEPROM.commit();
-  EEPROM.writeFloat(CounterB_add,0);
-  EEPROM.commit();
-  EEPROM.writeFloat(CounterC_add,0);
-  EEPROM.commit();
+  
   }
 }
 
 void EnergyMonitorClass::StoreCountedEnergy(){
-  float_t CounterA=EEPROM.readFloat(CounterA_add);
-  EEPROM.writeFloat(CounterA_add,CounterA+((ActiveEnergy->ActiveEnergy_A)*EnergyConversionConstant));
-  EEPROM.commit();
-  float_t CounterB=EEPROM.readFloat(CounterB_add);
-  EEPROM.writeFloat(CounterB_add,CounterB+((ActiveEnergy->ActiveEnergy_B)*EnergyConversionConstant));
-  EEPROM.commit();
-  float_t CounterC=EEPROM.readFloat(CounterC_add);
-  EEPROM.writeFloat(CounterC_add,CounterC+((ActiveEnergy->ActiveEnergy_C)*EnergyConversionConstant));
+  float_t Counter=EEPROM.readFloat(Counter_add);
+  EEPROM.writeFloat(Counter_add,Counter+((Energy->ActiveEnergyValue)*EnergyConversionConstant));
   EEPROM.commit();
 }
 
-float_t EnergyMonitorClass::ReadEnergyCounter(uint8_t phase){
+float_t EnergyMonitorClass::ReadEnergyCounter(){
 
-  if (phase==1){
-    return(EEPROM.readFloat(CounterA_add));
-  }else if(phase==2){
-    return(EEPROM.readFloat(CounterB_add));
-  }else if (phase==3){
-    return(EEPROM.readFloat(CounterC_add));
-  }
+ 
+  return(EEPROM.readFloat(Counter_add));
+
 }
 
 
@@ -424,24 +396,15 @@ void EnergyMonitorClass::energy_meter_setup()
 
   EnergySamples=0;
 
-  ActivePower= new ActivePowerRegs;
-  ReactivePower= new ReactivePowerRegs;
-  ApparentPower= new ApparentPowerRegs;
+  Power= new PowerRegs;
 
-  ActiveEnergy= new ActiveEnergyperH;
-  ade9000.InitActiveEnergy(ActiveEnergy);
+  Energy= new EnergyRegs;
+  ade9153A.InitActiveEnergy(Energy);
+  ade9153A.InitReactiveEnergy(Energy);
 
-  ReactiveEnergy= new ReactiveEnergyperH;
-  ade9000.InitReactiveEnergy(ReactiveEnergy);
+  RMS= new RMSRegs;  
 
-  CurrentRMS= new CurrentRMSRegs; 
-  VoltageRMS= new VoltageRMSRegs; 
-
-  PowerFactor= new PowerFactorRegs;
-  Frequency= new PeriodRegs; 
-
-  CurrentTHD = new CurrentTHDRegs;
-  VoltageTHD = new VoltageTHDRegs;
+  PQ= new PQRegs;
 
   EEPROM.begin(EEPROM_SIZE);
   InitEnergyCounter();

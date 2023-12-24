@@ -4,15 +4,17 @@
 #include "ADE9000API.h"
 #include "Interrupts.h"
 #include "energy_monitor.h"
+#include "SolarClass.h"
+#include "GridClass.h"
 #include "OTA.h"
 
 /*Basic initializations*/
 ADE9000Class ade9000;
-EnergyMonitorClass monitor;
+SolarClass monitor;
 #define SPI_SPEED 5000000     //SPI Speed
-#define CS_PIN 15 //8-->Arduino Zero. 16-->ESP8266 
-#define ADE9000_RESET_PIN 5 //Reset Pin on HW
-#define PM_1 4              //PM1 Pin: 4-->Arduino Zero. 15-->ESP8266 
+#define CS_PIN 5 //8-->Arduino Zero. 16-->ESP8266 
+#define ADE9000_RESET_PIN 14 //Reset Pin on HW
+#define PM_1 12              //PM1 Pin: 4-->Arduino Zero. 15-->ESP8266 
 
 /*Function Decleration*/
 void readRegisterData(void);
@@ -20,8 +22,8 @@ void readResampledData(void);
 void resetADE9000(void);
 
 /*WiFi settings*/
-const char* ssid = "ssid";
-const char* password = "********";
+const char* ssid = "TOPNETF15A40D9";
+const char* password = "98228782";
 
 wl_status_t WifiStatus;
 
@@ -31,7 +33,6 @@ extern volatile SemaphoreHandle_t energySemaphore;
 extern volatile SemaphoreHandle_t cfSemaphore;
 extern volatile SemaphoreHandle_t THDSemaphore;
 
-extern int StoreAddress;
 extern volatile ActiveEnergyperH* ActiveEnergy;
 extern volatile ReactiveEnergyperH* ReactiveEnergy;
 std::queue<struct dataNode> myQueue;
@@ -146,15 +147,15 @@ void loop() {
   }
   if (xSemaphoreTake(energySemaphore, 0) == pdTRUE){
     if (WiFi.status() == WL_CONNECTED){
-    monitor.PublishtotalActiveEnergy(ImportorExport); 
+    monitor.PublishtotalActiveEnergy("totalActiveEnergy"); 
     monitor.StoreCountedEnergy();
     ade9000.InitActiveEnergy(ActiveEnergy);
-    monitor.PublishtotalReactiveEnergy(ImportorExport );
+    monitor.PublishtotalReactiveEnergy("totalReactiveEnergy");
     ade9000.InitReactiveEnergy(ReactiveEnergy);
     }else{
-       monitor.store_data(ImportorExport,&(ActiveEnergy->ActiveEnergy_A),myQueue);
-       monitor.store_data(ImportorExport,&(ActiveEnergy->ActiveEnergy_B),myQueue);
-       monitor.store_data(ImportorExport,&(ActiveEnergy->ActiveEnergy_C),myQueue);
+       monitor.store_data("totalActiveEnergy/L1",&(ActiveEnergy->ActiveEnergy_A),myQueue);
+       monitor.store_data("totalActiveEnergy/L2",&(ActiveEnergy->ActiveEnergy_B),myQueue);
+       monitor.store_data("totalActiveEnergy/L3",&(ActiveEnergy->ActiveEnergy_C),myQueue);
     } 
   } 
   if (xSemaphoreTake(cfSemaphore, 0) == pdTRUE){
@@ -193,10 +194,6 @@ void loop() {
       
       Serial.println("wifi OFF");
       WiFi.disconnect();
-      delay(1000);
-    }else{
-      Serial.println("wifi ON");
-      //WiFi.reconnect();
       delay(1000);
     }
   }

@@ -3,7 +3,7 @@
 
 
 
-#include "ADE9000API.h"
+#include "ADE9153AAPI.h"
 #include "RealTime.h"
 #include "Interrupts.h"
 #include "defined.h"
@@ -52,7 +52,7 @@ class EnergyMonitorClass
 
     void StoreCountedEnergy();
 
-    float_t ReadEnergyCounter(uint8_t phase);
+    float_t ReadEnergyCounter();
 
     void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
 

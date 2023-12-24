@@ -1,6 +1,6 @@
 #define PowertimerFactor  1000000 //1 sec
-#define AccumulatedPowertimerFactor   100000000 //100 seconds
-#define EnergytimerFactor 3600000000 //1 hour 
+#define AccumulatedPowertimerFactor   1000000//100000000 //100 seconds
+#define EnergytimerFactor 10000000//3600000000 //1 hour 
 #define VCFtimerFactor  1000000 //15 minutes
 #define THDtimerFactor  5000000 //15 minutes
 
@@ -14,7 +14,7 @@
 
 #define Type "ACMeasurement"
 
-#define phaseType "threePhase"
+#define phaseType "singlePhase"
 
 #define deviceID "urn:ngsi-v2:SolarEnergy"
 #define deviceName "AirPort-NCE-T1-F01-TR05-ACTP"
