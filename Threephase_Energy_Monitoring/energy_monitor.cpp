@@ -318,18 +318,25 @@ void EnergyMonitorClass::PublishvoltagePhaseToPhase(char* sub_Topic){
 void EnergyMonitorClass::Publishfrequency(char* sub_Topic){
  
   char topic[100];
-  float farestdist;
-  farestdist=max(abs((Frequency->FrequencyValue_A)-50),abs((Frequency->FrequencyValue_B)-50));
-  farestdist=max(abs((Frequency->FrequencyValue_C)-50),farestdist);
+  float freq;
+  if (abs((Frequency->FrequencyValue_A)-50)>=abs((Frequency->FrequencyValue_B)-50)){
+    if (abs((Frequency->FrequencyValue_A)-50)>=abs((Frequency->FrequencyValue_C)-50)){
+        freq=Frequency->FrequencyValue_A;
+    }else{
+      freq=Frequency->FrequencyValue_C;
+    }
+  }else{
+      freq=Frequency->FrequencyValue_B;
+  }
   if (WiFi.status() == WL_CONNECTED){
   snprintf(topic, sizeof(topic), "%s/%s", root_Topic, sub_Topic);
   mqttClient.beginMessage(topic);
-  mqttClient.print(farestdist+50);
+  mqttClient.print(freq);
   mqttClient.endMessage();
   PublishdateObserved("dateObserved");
   }else{
       snprintf(topic, sizeof(topic), "%s/%s", root_Topic, sub_Topic);
-      store_data(topic,&(Frequency->FrequencyValue_C),myQueue);
+      store_data(topic,&freq,myQueue);
     }
 }
 
