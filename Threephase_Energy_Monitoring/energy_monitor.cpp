@@ -359,11 +359,11 @@ void EnergyMonitorClass::PublishvoltageTHD(char* sub_Topic){
     PublishdateObserved("dateObserved");
     }else{
       snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageRMS->VoltageRMSReg_A),myQueue);
+      store_data(topic,&(VoltageTHD->VoltageTHDValue_A),myQueue);
       snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageRMS->VoltageRMSReg_B),myQueue);
+      store_data(topic,&(VoltageTHD->VoltageTHDValue_B),myQueue);
       snprintf(topic, sizeof(topic), "%s/Volatages/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageRMS->VoltageRMSReg_C),myQueue);
+      store_data(topic,&(VoltageTHD->VoltageTHDValue_C),myQueue);
     }
 }
 
@@ -386,11 +386,11 @@ void EnergyMonitorClass::PublishcurrentTHD(char* sub_Topic){
     PublishdateObserved("dateObserved");
     }else{
       snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(CurrentRMS->CurrentRMSReg_A),myQueue);
+      store_data(topic,&(CurrentTHD->CurrentTHDValue_A),myQueue);
       snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(CurrentRMS->CurrentRMSReg_B),myQueue);
+      store_data(topic,&(CurrentTHD->CurrentTHDValue_B),myQueue);
       snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(CurrentRMS->CurrentRMSReg_C),myQueue);
+      store_data(topic,&(CurrentTHD->CurrentTHDValue_C),myQueue);
     }
 }
 
