@@ -22,8 +22,12 @@ void readResampledData(void);
 void resetADE9000(void);
 
 /*WiFi settings*/
-const char* ssid = "TOPNETF15A40D9";
-const char* password = "98228782";
+const char* ssid = "ssid";
+const char* password = "**********";
+
+/*Static address of broker*/
+const char broker[]="192.168.1.16";
+int port =1883;
 
 wl_status_t WifiStatus;
 
@@ -40,9 +44,6 @@ std::queue<struct dataNode> myQueue;
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
-/*Static address of broker*/
-const char broker[]="192.168.1.16";
-int port =1883;
 
 extern volatile ActivePowerRegs* ActivePower;
 extern volatile ReactivePowerRegs* ReactivePower;

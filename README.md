@@ -109,6 +109,8 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 ![image](img/EnergyMonitorClass.png)
 ![image](img/GridClass.png)
 ![image](img/SolarClass.png)
+![image](img/periodicity.png)
+![image](img/config1.png)
 
 # Prerequisites
 ## Docker and Docker Compose
