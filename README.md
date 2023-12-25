@@ -123,10 +123,18 @@ Install libraries:(ArduinoMQTTClient and ESP32Time)
 ![image](img/SolarClass.png)
 
 ## Monitor configuration
+
+Set-up Wifi credentials. Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that represents the broker address.
 ![image](img/config1.png)
+
+You can configure the periodicity of measurements using the defined parameters.
 ![image](img/periodicity.png)
+
+Choosing between Grid or solar class is simple, you should only redeclare the monitor object as GridClass member or SolarClass member.
 ![image](img/Classes1.png)
 ![image](img/Classes2.png)
+
+Be careful, you should not use the EnergyMonitorClass because it is an abstract class
 ![image](img/Classes3.png)
 ![image](img/defined.png)
 
