@@ -120,6 +120,7 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 
 ## code
 <img src="img/EnergyMonitorClass.png" style=" width:590px ; height:999px "  >
+<img src="img/EnergyMonitorClass2.png" >
 <img src="img/GridorSolar.png"  >
 
 ### Explanation of functions
