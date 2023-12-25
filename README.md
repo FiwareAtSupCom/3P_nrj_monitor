@@ -116,11 +116,11 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 
 - Install libraries:(ArduinoMQTTClient and ESP32Time)
 
-<img src="img/libraries.png" style=" width:180px ; height:350px "  >
+<img src="img/libraries.png" style=" width:283px ; height:453px "  >
 
 ## code
-<img src="img/EnergyMonitorClass.png" style=" width:454px ; height:770px "  >
-![image](img/GridorSolar.png)
+<img src="img/EnergyMonitorClass.png" style=" width:590px ; height:999px "  >
+<img src="img/GridorSolar.png"  >
 
 ### Explanation of functions
 
