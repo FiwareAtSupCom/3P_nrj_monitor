@@ -105,6 +105,17 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 ## Schema
 ![image](img/schema1.png)
 ![image](img/schema2.png)
+
+## prerequisites
+Install Arduino IDE:
+[Arduino IDE](https://www.arduino.cc/en/software)
+
+Install ESP32 Board in Arduino IDE:
+[ESP32 Board](https://www.instructables.com/Installing-the-ESP32-Board-in-Arduino-IDE-Windows-/)
+
+Install libraries:
+![image](img/libraries.png)
+
 ## code
 ![image](img/EnergyMonitorClass.png)
 ![image](img/GridClass.png)
