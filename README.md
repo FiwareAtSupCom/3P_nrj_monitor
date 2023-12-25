@@ -123,61 +123,61 @@ Install libraries:(ArduinoMQTTClient and ESP32Time)
 
 ### Explanation of functions
 
-    **EnergyMonitorClass**:Constructor of EnergyMonitorClass.
+- `EnergyMonitorClass`:Constructor of EnergyMonitorClass.
 
-    **handleWifiStatus**:Maintain Wifi connection. 
+- `handleWifiStatus`:Maintain Wifi connection. 
 
-    **checkBroker**:Maintain connection with the broker.
+- `checkBroker`:Maintain connection with the broker.
 
-    **InitEnergyCounter**:
+- `InitEnergyCounter`:
 
-    **StoreCountedEnergy**:Store the active energy of each phase in EEPROM.
+- `StoreCountedEnergy`:Store the active energy of each phase in EEPROM.
 
-    **ReadEnergyCounter**: Read the total stored Energy of a selected phase.
+- `ReadEnergyCounter`: Read the total stored Energy of a selected phase.
 
-    **store_data**: In case of wifi disruption, it stores measurements with timestamp in a queue.
+- `store_data`: In case of wifi disruption, it stores measurements with timestamp in a queue.
 
-    **send_data**: when the connection is restored, it sends the stored data.
+- `send_data`: when the connection is restored, it sends the stored data.
 
-    **Change_timers_config**: reconfigure the periodicity of the interrupts.
+- `Change_timers_config`: reconfigure the periodicity of the interrupts.
 
-    **MeasureStartTime**: It stores the first time of measuring in EEPROM, this value is stored only one.
+- `MeasureStartTime`: It stores the first time of measuring in EEPROM, this value is stored only one.
 
-    **energy_meter_setup**: Initialize the monitor.
+- `energy_meter_setup`: Initialize the monitor.
 
-    **PublishdateObserved**: Publish the timestamp of measurement.
+- `PublishdateObserved`: Publish the timestamp of measurement.
 
-    **PublishphaseType**: Publish the phase type (threephase or singlephase)
+- `PublishphaseType`: Publish the phase type (threephase or singlephase)
 
-    **PublishActivePower**: Publish the active power and the total active power.
+- `PublishActivePower`: Publish the active power and the total active power.
 
-    **PublishReactivePower**: Publish the reactive power and the total reactive power.
+- `PublishReactivePower`: Publish the reactive power and the total reactive power.
 
-    **PublishApparentPower**: Publish the apparent power and the total apparent power.
+- `PublishApparentPower`: Publish the apparent power and the total apparent power.
 
-    **PublishpowerFactor**: Publish power factor.
+- `PublishpowerFactor`: Publish power factor.
 
-    **PublishdisplacementpowerFactor**: Publish displacement power factor.
+- `PublishdisplacementpowerFactor`: Publish displacement power factor.
 
-    **Publishvoltage**: Publish voltage.
+- `Publishvoltage`: Publish voltage.
 
-    **Publishcurrent**: Publish current.
+- `Publishcurrent`: Publish current.
 
-    **PublishvoltagePhaseToPhase**: Publish Line voltage.
+- `PublishvoltagePhaseToPhase`: Publish Line voltage.
 
-    **Publishfrequency**: Publish frequency.
+- `Publishfrequency`: Publish frequency.
 
-    **PublishvoltageTHD**:Publish voltage distorsion.
+- `PublishvoltageTHD`:Publish voltage distorsion.
 
-    **PublishcurrentTHD**: Publish current distorsion.
+- `PublishcurrentTHD`: Publish current distorsion.
 
-    **SolarClass**:Constructor of SolarClass.
+- `SolarClass`:Constructor of SolarClass.
 
-    **GridClass**:Constructor of GridClass.
+- `GridClass`:Constructor of GridClass.
 
-    **PublishtotalActiveEnergy**: Publish total Imported active energy of a Grid system or Publish total Exported active energy of a Solar system.
+- `PublishtotalActiveEnergy`: Publish total Imported active energy of a Grid system or Publish total Exported active energy of a Solar system.
 
-    **PublishtotalReactiveEnergy**: Publish total Imported reactive energy of a Grid system or Publish total Exported reactive energy of a Solar system.
+- `PublishtotalReactiveEnergy`: Publish total Imported reactive energy of a Grid system or Publish total Exported reactive energy of a Solar system.
 
 
 ## Monitor configuration
