@@ -141,9 +141,8 @@ void loop() {
     monitor.Publishfrequency("frequency");
   } 
   if (xSemaphoreTake(THDSemaphore, 0) == pdTRUE){
-    ade9153A.ReadRMSRegs(RMS);
-    monitor.PublishvoltageTHD("voltageTHD");
-    monitor.PublishcurrentTHD("currentTHD");
+    
+    
   }
 
   disconnectWifi();

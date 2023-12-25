@@ -297,65 +297,7 @@ void EnergyMonitorClass::Publishfrequency(char* sub_Topic){
   }
 }
 
-void EnergyMonitorClass::PublishvoltageTHD(char* sub_Topic){
 
-    char topic[100];
-    if (WiFi.status() == WL_CONNECTED){
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->VoltageRMSValue)*VoltageConversionConstant);
-    mqttClient.endMessage();
-    PublishdateObserved("dateObserved");
-    }else{
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->VoltageRMSValue),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->VoltageRMSValue),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->VoltageRMSValue),myQueue);
-    }
-}
-
-void EnergyMonitorClass::PublishcurrentTHD(char* sub_Topic){
-
-    char topic[100];
-    if (WiFi.status() == WL_CONNECTED){
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/N", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((RMS->CurrentRMSValue)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    PublishdateObserved("dateObserved");
-    }else{
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->CurrentRMSValue),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->CurrentRMSValue),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->CurrentRMSValue),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/N", root_Topic, sub_Topic);
-      store_data(topic,&(RMS->CurrentRMSValue),myQueue);
-    }
-}
 
 void EnergyMonitorClass::handleWifiStatus(wl_status_t* WifiStatus){
     if (WiFi.status()!= *WifiStatus){

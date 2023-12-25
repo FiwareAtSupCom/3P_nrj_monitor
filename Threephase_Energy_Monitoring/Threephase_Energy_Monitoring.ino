@@ -11,7 +11,6 @@
 /*Basic initializations*/
 ADE9000Class ade9000;
 SolarClass monitor;
-
 #define SPI_SPEED 5000000     //SPI Speed
 #define CS_PIN 5 //8-->Arduino Zero. 16-->ESP8266 
 #define ADE9000_RESET_PIN 14 //Reset Pin on HW
@@ -23,12 +22,8 @@ void readResampledData(void);
 void resetADE9000(void);
 
 /*WiFi settings*/
-const char* ssid = "ssid";
-const char* password = "**********";
-
-/*Static address of broker*/
-const char broker[]="192.168.1.16";
-int port =1883;
+const char* ssid = "TOPNETF15A40D9";
+const char* password = "98228782";
 
 wl_status_t WifiStatus;
 
@@ -45,6 +40,9 @@ std::queue<struct dataNode> myQueue;
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
+/*Static address of broker*/
+const char broker[]="192.168.1.16";
+int port =1883;
 
 extern volatile ActivePowerRegs* ActivePower;
 extern volatile ReactivePowerRegs* ReactivePower;
@@ -158,7 +156,10 @@ void loop() {
     monitor.Publishfrequency("frequency");
   } 
   if (xSemaphoreTake(THDSemaphore, 0) == pdTRUE){
-    
+    ade9000.ReadVoltageTHDRegsnValues(VoltageTHD);
+    ade9000.ReadCurrentTHDRegsnValues(CurrentTHD);
+    monitor.PublishvoltageTHD("voltageTHD");
+    monitor.PublishcurrentTHD("currentTHD");
   }
 
   disconnectWifi();

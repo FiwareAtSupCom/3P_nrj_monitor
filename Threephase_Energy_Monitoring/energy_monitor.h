@@ -98,6 +98,10 @@ class EnergyMonitorClass
 
     void Publishfrequency(char* sub_Topic);
 
+    void PublishvoltageTHD(char* sub_Topic);
+
+    void PublishcurrentTHD(char* sub_Topic);
+
 };
 
 #endif // ENERGY_MONITOR_H
