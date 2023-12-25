@@ -119,8 +119,7 @@ Install libraries:(ArduinoMQTTClient and ESP32Time)
 
 ## code
 ![image](img/EnergyMonitorClass.png)
-![image](img/GridClass.png)
-![image](img/SolarClass.png)
+![image](img/GridorSolar.png)
 
 ## Monitor configuration
 
