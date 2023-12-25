@@ -1,8 +1,9 @@
 #define PowertimerFactor  1000000 //1 sec
-#define AccumulatedPowertimerFactor   100000000 //100 seconds
 #define EnergytimerFactor 3600000000 //1 hour 
 #define VCFtimerFactor  900000000 //15 minutes
-#define THDtimerFactor  1800000000 //15 minutes
+#define THDtimerFactor  1800000000 //30 minutes
+
+#define AccumulatedPowertimerFactor   100000000 //100 seconds
 
 #define PowerConversionConstant 3.6097 //(mWATT/mVAR/mVA)/LSB
 
