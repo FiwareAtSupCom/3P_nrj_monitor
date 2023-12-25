@@ -10,7 +10,8 @@
 
 /*Basic initializations*/
 ADE9000Class ade9000;
-SolarClass monitor;
+EnergyMonitorClass monitor;
+
 #define SPI_SPEED 5000000     //SPI Speed
 #define CS_PIN 5 //8-->Arduino Zero. 16-->ESP8266 
 #define ADE9000_RESET_PIN 14 //Reset Pin on HW
