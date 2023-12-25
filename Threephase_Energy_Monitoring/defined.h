@@ -19,8 +19,7 @@
 #define deviceID "urn:ngsi-v2:SolarEnergy"
 #define deviceName "AirPort-NCE-T1-F01-TR05-ACTP"
 #define alternateName "AirPort global Observation"
-#define description "Measurement corresponding to the ventilation machine of the technical rooms Terminal 1 T1 Floor 01 Technical Room 05 for Triphase alternating current"
-#define areaServed "Nice Aeroport"
+#define description "Measurement corresponding to the ventilation machine of.."
 #define refDevice "urn:ngsi-ld:Device:T1-F01-TR05-ACTP"
 
 

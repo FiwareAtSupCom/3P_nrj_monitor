@@ -106,14 +106,14 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 ![image](img/schema1.png)
 ![image](img/schema2.png)
 
-## prerequisites
+## Prerequisites
 Install Arduino IDE:
 [Arduino IDE](https://www.arduino.cc/en/software)
 
 Install ESP32 Board in Arduino IDE:
 [ESP32 Board](https://www.instructables.com/Installing-the-ESP32-Board-in-Arduino-IDE-Windows-/)
 
-Install libraries:
+Install libraries:(ArduinoMQTTClient and ESP32Time)
 
 ![image](img/libraries.png)
 
@@ -121,11 +121,15 @@ Install libraries:
 ![image](img/EnergyMonitorClass.png)
 ![image](img/GridClass.png)
 ![image](img/SolarClass.png)
-![image](img/periodicity.png)
+
+## Monitor configuration
 ![image](img/config1.png)
+![image](img/periodicity.png)
 ![image](img/Classes1.png)
 ![image](img/Classes2.png)
 ![image](img/Classes3.png)
+![image](img/defined.png)
+
 
 # Prerequisites
 ## Docker and Docker Compose
