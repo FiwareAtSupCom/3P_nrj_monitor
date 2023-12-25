@@ -72,8 +72,6 @@ class EnergyMonitorClass
 
     void energy_meter_setup();
 
-    ///
-
     void PublishdateObserved(char* sub_Topic);
 
     void PublishphaseType(char* sub_Topic,char* type);
