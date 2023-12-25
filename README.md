@@ -114,6 +114,7 @@ Install ESP32 Board in Arduino IDE:
 [ESP32 Board](https://www.instructables.com/Installing-the-ESP32-Board-in-Arduino-IDE-Windows-/)
 
 Install libraries:
+
 ![image](img/libraries.png)
 
 ## code
