@@ -34,8 +34,7 @@ extern volatile SemaphoreHandle_t energySemaphore;
 extern volatile SemaphoreHandle_t cfSemaphore;
 extern volatile SemaphoreHandle_t THDSemaphore;
 
-extern volatile ActiveEnergyperH* ActiveEnergy;
-extern volatile ReactiveEnergyperH* ReactiveEnergy;
+
 std::queue<struct dataNode> myQueue;
 
 WiFiClient wifiClient;
@@ -55,6 +54,7 @@ extern volatile ReactiveEnergyperH* ReactiveEnergy;
 extern volatile VoltageRMSRegs* VoltageRMS;
 extern volatile CurrentRMSRegs* CurrentRMS;
 extern volatile PowerFactorRegs* PowerFactor;
+extern volatile AngleRegs* Angle;
 extern volatile PeriodRegs* Frequency;
 
 extern volatile CurrentTHDRegs* CurrentTHD;
@@ -156,10 +156,7 @@ void loop() {
     monitor.Publishfrequency("frequency");
   } 
   if (xSemaphoreTake(THDSemaphore, 0) == pdTRUE){
-    ade9000.ReadVoltageTHDRegsnValues(VoltageTHD);
-    ade9000.ReadCurrentTHDRegsnValues(CurrentTHD);
-    monitor.PublishvoltageTHD("voltageTHD");
-    monitor.PublishcurrentTHD("currentTHD");
+    
   }
 
   disconnectWifi();

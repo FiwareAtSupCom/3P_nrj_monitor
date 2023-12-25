@@ -12,6 +12,7 @@ extern volatile ReactiveEnergyperH* ReactiveEnergy;
 extern volatile VoltageRMSRegs* VoltageRMS;
 extern volatile CurrentRMSRegs* CurrentRMS;
 extern volatile PowerFactorRegs* PowerFactor;
+extern volatile AngleRegs* Angle;
 extern volatile PeriodRegs* Frequency;
 
 extern volatile CurrentTHDRegs* CurrentTHD;

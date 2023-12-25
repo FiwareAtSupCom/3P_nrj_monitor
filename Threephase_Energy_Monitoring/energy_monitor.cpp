@@ -22,6 +22,7 @@ volatile ReactiveEnergyperH* ReactiveEnergy;
 volatile VoltageRMSRegs* VoltageRMS;
 volatile CurrentRMSRegs* CurrentRMS;
 volatile PowerFactorRegs* PowerFactor;
+volatile AngleRegs* Angle;
 volatile PeriodRegs* Frequency;
 
 volatile CurrentTHDRegs* CurrentTHD;
@@ -208,30 +209,34 @@ void EnergyMonitorClass::PublishdisplacementpowerFactor(char* sub_Topic){
     if (WiFi.status() == WL_CONNECTED){
     snprintf(topic, sizeof(topic), "%s/%s/L1", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_A));
+    mqttClient.print(cos(Angle->AngleValue_VA_IA));
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/%s/L2", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_B));
+    mqttClient.print(cos(Angle->AngleValue_VB_IB));
     mqttClient.endMessage();
     snprintf(topic, sizeof(topic), "%s/%s/L3", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((PowerFactor->PowerFactorValue_C));
+    mqttClient.print(cos(Angle->AngleValue_VC_IC));
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
     }else{
+      float DPF;
+      DPF=cos(Angle->AngleValue_VA_IA);
       snprintf(topic, sizeof(topic), "%s/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(PowerFactor->PowerFactorValue_A),myQueue);
+      store_data(topic,&DPF,myQueue);
+      DPF=cos(Angle->AngleValue_VB_IB);
       snprintf(topic, sizeof(topic), "%s/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(PowerFactor->PowerFactorValue_B),myQueue);
+      store_data(topic,&DPF,myQueue);
+      DPF=cos(Angle->AngleValue_VC_IC);
       snprintf(topic, sizeof(topic), "%s/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(PowerFactor->PowerFactorValue_C),myQueue);
+      store_data(topic,&DPF,myQueue);
     }
     
 }
 
 void EnergyMonitorClass::Publishvoltage(char* sub_Topic){
-
+    //Phase voltage
     char topic[100];
     if (WiFi.status() == WL_CONNECTED){
     snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
@@ -289,29 +294,33 @@ void EnergyMonitorClass::Publishcurrent(char* sub_Topic){
 }
 
 void EnergyMonitorClass::PublishvoltagePhaseToPhase(char* sub_Topic){
-
+    //Line voltage
     char topic[100];
     if (WiFi.status() == WL_CONNECTED){
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
+    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L12", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_A)*VoltageConversionConstant);
+    mqttClient.print(((VoltageRMS->VoltageRMSReg_A)-(VoltageRMS->VoltageRMSReg_B))*VoltageConversionConstant);
     mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
+    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L23", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_B)*VoltageConversionConstant);
+    mqttClient.print(((VoltageRMS->VoltageRMSReg_B)-(VoltageRMS->VoltageRMSReg_C))*VoltageConversionConstant);
     mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
+    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L31", root_Topic, sub_Topic);
     mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageRMS->VoltageRMSReg_C)*VoltageConversionConstant);
+    mqttClient.print(((VoltageRMS->VoltageRMSReg_C)-(VoltageRMS->VoltageRMSReg_A))*VoltageConversionConstant);
     mqttClient.endMessage();
     PublishdateObserved("dateObserved");
     }else{
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageRMS->VoltageRMSReg_A),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageRMS->VoltageRMSReg_B),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Volatages/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageRMS->VoltageRMSReg_C),myQueue);
+      int32_t Linevoltage;
+      Linevoltage=((VoltageRMS->VoltageRMSReg_A)-(VoltageRMS->VoltageRMSReg_B));
+      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L12", root_Topic, sub_Topic);
+      store_data(topic,&Linevoltage,myQueue);
+      Linevoltage=((VoltageRMS->VoltageRMSReg_B)-(VoltageRMS->VoltageRMSReg_C));
+      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L23", root_Topic, sub_Topic);
+      store_data(topic,&Linevoltage,myQueue);
+      Linevoltage=((VoltageRMS->VoltageRMSReg_C)-(VoltageRMS->VoltageRMSReg_A));
+      snprintf(topic, sizeof(topic), "%s/Volatages/%s/L31", root_Topic, sub_Topic);
+      store_data(topic,&Linevoltage,myQueue);
     }
 }
 
@@ -340,59 +349,6 @@ void EnergyMonitorClass::Publishfrequency(char* sub_Topic){
     }
 }
 
-void EnergyMonitorClass::PublishvoltageTHD(char* sub_Topic){
-
-    char topic[100];
-    if (WiFi.status() == WL_CONNECTED){
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageTHD->VoltageTHDValue_A)*VoltageConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageTHD->VoltageTHDValue_B)*VoltageConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Voltages/%s/L3", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((VoltageTHD->VoltageTHDValue_C)*VoltageConversionConstant);
-    mqttClient.endMessage();
-    PublishdateObserved("dateObserved");
-    }else{
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageTHD->VoltageTHDValue_A),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Voltages/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageTHD->VoltageTHDValue_B),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Volatages/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(VoltageTHD->VoltageTHDValue_C),myQueue);
-    }
-}
-
-void EnergyMonitorClass::PublishcurrentTHD(char* sub_Topic){
-
-    char topic[100];
-    if (WiFi.status() == WL_CONNECTED){
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentTHD->CurrentTHDValue_A)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentTHD->CurrentTHDValue_B)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
-    mqttClient.beginMessage(topic);
-    mqttClient.print((CurrentTHD->CurrentTHDValue_C)*CurrentConversionConstant);
-    mqttClient.endMessage();
-    PublishdateObserved("dateObserved");
-    }else{
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/L1", root_Topic, sub_Topic);
-      store_data(topic,&(CurrentTHD->CurrentTHDValue_A),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/L2", root_Topic, sub_Topic);
-      store_data(topic,&(CurrentTHD->CurrentTHDValue_B),myQueue);
-      snprintf(topic, sizeof(topic), "%s/Currents/%s/L3", root_Topic, sub_Topic);
-      store_data(topic,&(CurrentTHD->CurrentTHDValue_C),myQueue);
-    }
-}
 
 void EnergyMonitorClass::handleWifiStatus(wl_status_t* WifiStatus){
     if (WiFi.status()!= *WifiStatus){

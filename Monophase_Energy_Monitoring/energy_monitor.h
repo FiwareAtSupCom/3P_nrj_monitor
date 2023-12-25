@@ -96,8 +96,6 @@ class EnergyMonitorClass
 
     void Publishcurrent(char* sub_Topic);
 
-    void PublishvoltagePhaseToPhase(char* sub_Topic);
-
     void Publishfrequency(char* sub_Topic);
 
     void PublishvoltageTHD(char* sub_Topic);
