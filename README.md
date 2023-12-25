@@ -99,9 +99,9 @@ To intuitively visualize this data, we employ Grafana, which connects to CrateDB
 # Embedded System
 
 The ESP32 performs periodic measurements using timer interrupts. The data is transmitted over Wi-Fi using MQTT protocol, and in case of a connection interruption, the ESP32 stores the information and the timestamp. It actively monitors the Wi-Fi connection, adjusting timers to minimize local storage if the connection is disrupted. This approach ensures efficient data management despite connectivity disruptions.
-![image](img/processes_sur_ESP-32.jpg width="40" height="400")
-![image](img/power_interrpt.jpg width="40" height="400")
-![image](img/Energy_interupt.jpg width="40" height="400")
+![image](img/processes_sur_ESP-32.png width="40" height="400")
+![image](img/power_interrpt.png width="40" height="400")
+![image](img/Energy_interupt.png width="40" height="400")
 ## Schema
 ![image](img/schema1.png)
 ![image](img/schema2.png)
