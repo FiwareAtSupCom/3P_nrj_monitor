@@ -50,8 +50,6 @@ class EnergyMonitorClass
 	public:
 		EnergyMonitorClass();
 
-    ///
-
     void handleWifiStatus(wl_status_t* WifiStatus);
 
     void checkBroker();
