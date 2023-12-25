@@ -96,14 +96,15 @@ Simultaneously, Orion Context Broker extends its data recording to CrateDB throu
 
 3. Grafana Visualization via CrateDB:
 To intuitively visualize this data, we employ Grafana, which connects to CrateDB to extract the necessary information. This integration facilitates real-time visualization and provides powerful tools for the analysis and comprehension of the performance of monitored energy systems. Thus, our comprehensive architecture ensures efficient data collection, storage, and intelligent visualization, contributing to optimal management of energy processes.
-# Système embarqué
+# Embedded System
 
-L'ESP32 effectue des mesures périodiques via des interruptions de timer. Les données sont transmises par Wi-Fi, et en cas d'interruption de la connexion, l'ESP32 stocke les informations dans une mémoire limitée de 512 octets. Elle surveille activement la connexion Wi-Fi, ajustant les timers pour minimiser le stockage local si la connexion est interrompue. Cette approche garantit une gestion efficace des données malgré les perturbations de la connectivité
-![MyImage](img/processes_sur_ESP-32.jpg width="40" height="400")
-![MyImage](img/power_interrpt.jpg width="40" height="400")
-![MyImage](img/Energy_interupt.jpg width="40" height="400")
+The ESP32 performs periodic measurements using timer interrupts. The data is transmitted over Wi-Fi using MQTT protocol, and in case of a connection interruption, the ESP32 stores the information and the timestamp. It actively monitors the Wi-Fi connection, adjusting timers to minimize local storage if the connection is disrupted. This approach ensures efficient data management despite connectivity disruptions.
+![image](img/processes_sur_ESP-32.jpg width="40" height="400")
+![image](img/power_interrpt.jpg width="40" height="400")
+![image](img/Energy_interupt.jpg width="40" height="400")
 ## Schema
-...
+![image](img/schema1.png)
+![image](img/schema2.png)
 ## code
 ...
 
