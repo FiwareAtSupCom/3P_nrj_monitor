@@ -107,13 +107,13 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 ![image](img/schema2.png)
 
 ## Prerequisites
-Install Arduino IDE:
+- Install Arduino IDE:
 [Arduino IDE](https://www.arduino.cc/en/software)
 
-Install ESP32 Board in Arduino IDE:
+- Install ESP32 Board in Arduino IDE:
 [ESP32 Board](https://www.instructables.com/Installing-the-ESP32-Board-in-Arduino-IDE-Windows-/)
 
-Install libraries:(ArduinoMQTTClient and ESP32Time)
+- Install libraries:(ArduinoMQTTClient and ESP32Time)
 
 ![image](img/libraries.png)
 
@@ -182,24 +182,24 @@ Install libraries:(ArduinoMQTTClient and ESP32Time)
 
 ## Monitor configuration
 
-Set-up Wifi credentials. 
+- Set-up Wifi credentials. 
 Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that represents the broker address.
 
 ![image](img/config1.png)
 
-You can configure the periodicity of measurements using the defined parameters.
+- You can configure the periodicity of measurements using the defined parameters.
 
 ![image](img/periodicity.png)
 
-Choosing between Grid or solar class is simple, you should only redeclare the monitor object as GridClass member or SolarClass member.
+- Choosing between Grid or solar class is simple, you should only redeclare the monitor object as GridClass member or SolarClass member.
 
 ![image](img/Classes1.png)
 
-Be careful, you should not use the EnergyMonitorClass because it is an abstract class.
+- Be careful, you should not use the EnergyMonitorClass because it is an abstract class.
 
 ![image](img/Classes2.png)
 
-Set the features of the device like (Type, phaseType, deviceID, deviceName....)
+- Set the features of the device like (Type, phaseType, deviceID, deviceName....)
 
 ![image](img/defined.png)
 
