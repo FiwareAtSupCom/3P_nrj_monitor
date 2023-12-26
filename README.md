@@ -59,7 +59,7 @@ The diagram, originally depicting the relationship between the 3 voltages, is no
 
 **Start and Stop Bits:.** The transmitted data may be framed by start bits and stop bits, defining the beginning and end of each data byte.
 
-## Systèmes monitorés:
+## Monitoring System:
 The three-phase energy measurement and monitoring system could be utilized to monitor various electric energy production and consumption systems. Here are some examples of systems that the system can monitor:
 
 1. Local Electrical Grid: The system could be used to monitor energy consumption in a building, enabling users to make informed decisions to save energy. It could monitor energy consumption for lighting, heating, air conditioning, etc., to optimize energy efficiency.
