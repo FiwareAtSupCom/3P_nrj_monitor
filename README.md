@@ -535,15 +535,42 @@ curl -X GET \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
-*to show the addes device from the context broker
+*to show the addes device from the context broker:
 ```yaml
 curl -X GET \
   'http://localhost:1026/v2/entities/urn:ngsi-ld:ACMeasurement:ACMeasurement:MNCA-ACM-001?type=ACMeasurement' \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
-
-
+*to add subscription to the context broker :
+```yaml
+curl -iX POST 'http://localhost:1026/v2/subscriptions' \
+  -H 'Content-Type: application/json' \
+  -H 'fiware-service: openiot' \
+  -H 'fiware-servicepath: /' \
+  -d '{
+  "description": "Notify QuantumLeap of all DHT Sensor changes",
+  "subject": {
+    "entities": [
+      {
+        "idPattern": "urn:ngsi-ld:ACMeasurement:ACMeasurement:MNCA-ACM-001"
+      }
+    ]
+  },
+  "notification": {
+    "http": {
+      "url": "http://quantumleap:8668/v2/notify"
+    }
+  }
+}'
+```
+*to show the created subscription:
+```yaml
+curl -X GET \
+  'http://localhost:1026/v2/entities/subscriptions' \
+  -H 'fiware-service: openiot' \
+  -H 'fiware-servicepath: /'
+```
 The digital twin would be constantly updated in real time using data from the ESP. It would reflect fluctuations in power consumed. To enable easy interaction, the digital twin would have a graphical user interface that would provide intuitive visualizations and performance charts.
 
 ## Front End / Grafana ?
