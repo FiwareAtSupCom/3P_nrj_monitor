@@ -528,7 +528,7 @@ curl -X GET \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
-*to show the addes device from the context broker:
+*to show the added device from the context broker:
 ```yaml
 curl -X GET \
   'http://localhost:1026/v2/entities/urn:ngsi-ld:ACMeasurement:ACMeasurement:MNCA-ACM-001?type=ACMeasurement' \
@@ -561,6 +561,13 @@ curl -iX POST 'http://localhost:1026/v2/subscriptions' \
 ```yaml
 curl -X GET \
   'http://localhost:1026/v2/entities/subscriptions' \
+  -H 'fiware-service: openiot' \
+  -H 'fiware-servicepath: /'
+```
+*to Show records history from quantumleap:
+```yaml
+curl -X GET \
+  'http://localhost:8668/v2/entities/urn:ngsi-ld:ACMeasurement:ACMeasurement:MNCA-ACM-001' \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
