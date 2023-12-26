@@ -46,11 +46,11 @@ class EnergyMonitorClass
 
     void PublishtotalApparentPower(char* sub_Topic);
 
+    void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
+
 
 	public:
 		EnergyMonitorClass();
-
-    ///
 
     void handleWifiStatus(wl_status_t* WifiStatus);
 
@@ -62,8 +62,6 @@ class EnergyMonitorClass
 
     float_t ReadEnergyCounter();
 
-    void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
-
     void send_data(std::queue<struct dataNode>& myQueue);
 
     void Change_timers_config(unsigned int Factor);
@@ -71,8 +69,6 @@ class EnergyMonitorClass
     String MeasureStartTime();
 
     void energy_meter_setup();
-
-    ///
 
     void PublishdateObserved(char* sub_Topic);
 

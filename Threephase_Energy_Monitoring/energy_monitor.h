@@ -46,6 +46,8 @@ class EnergyMonitorClass
 
     void PublishtotalApparentPower(char* sub_Topic);
 
+    void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
+
 
 	public:
 		EnergyMonitorClass();
@@ -59,8 +61,6 @@ class EnergyMonitorClass
     void StoreCountedEnergy();
 
     float_t ReadEnergyCounter(uint8_t phase);
-
-    void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
 
     void send_data(std::queue<struct dataNode>& myQueue);
 
@@ -99,7 +99,6 @@ class EnergyMonitorClass
     void PublishvoltageTHD(char* sub_Topic);
 
     void PublishcurrentTHD(char* sub_Topic);
-
 };
 
 #endif // ENERGY_MONITOR_H

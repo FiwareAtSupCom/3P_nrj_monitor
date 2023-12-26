@@ -120,7 +120,6 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 
 ## code
 <img src="img/EnergyMonitorClass.png" style=" width:590px ; height:999px "  >
-<img src="img/EnergyMonitorClass2.png" >
 <img src="img/GridorSolar.png"  >
 
 ### Explanation of functions
@@ -204,6 +203,10 @@ Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that rep
 - Set the features of the device like (Type, phaseType, deviceID, deviceName....)
 
 ![image](img/defined.png)
+
+- Set the root topic (defined in energy_monitor.cpp) using "ul" (ultra light protocol) , "EnergyMonitoring" (API_KEY) and design topics using the features of the device (in defined.h)
+
+![image](img/roottopic.png)
 
 
 # Prerequisites
