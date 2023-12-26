@@ -407,7 +407,7 @@ void EnergyMonitorClass::handleWifiStatus(wl_status_t* WifiStatus){
     if (WiFi.status()!= *WifiStatus){
     if (WiFi.status() != WL_CONNECTED){
     digitalWrite(2, HIGH);
-    Change_timers_config(3);
+    Change_timers_config(timerFactorChanger);
     //reconnect to WIFI
     WiFi.reconnect();
     delay(100);

@@ -3,6 +3,7 @@
 #define VCFtimerFactor  900000000 //15 minutes
 #define THDtimerFactor  1800000000 //15 minutes
 
+#define timerFactorChanger 3
 
 #define AccumulatedPowertimerFactor   100000000 //100 seconds
 
