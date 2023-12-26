@@ -423,13 +423,6 @@ The data we will use is:
 
 * Power factor :  It is the ratio of real power (the power that actually performs the work) to apparent power (the total power in the circuit).
 
-
-The requests for writing IoT systems corresponding to the NGSI are found in the following files: 
-
-https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/NGSI%20requests/3%20phases%20POST%20request.txt
-
-https://github.com/FiwareAtSupCom/3P_nrj_monitor/blob/main/NGSI%20requests/solar%20POST%20request.txt
-
 the common structure within each data entity must be standardized to promote reuse.
 
 The data model for threephase measurement can be found in the following file: 
