@@ -119,44 +119,45 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 <img src="img/libraries.png" style=" width:283px ; height:453px "  >
 
 
-## Monitor configuration
-
-- Set-up Wifi credentials. 
-Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that represents the broker address.
-
-![image](img/config1.png)
-
-- You can configure the periodicity of measurements using the defined parameters.
-
-![image](img/periodicity.png)
-
-- You can configure timerFactorChanger to make less measurements in case of wifi disruption.
-
-![image](img/timerFactorChanger.png)
-
-- Choosing between Grid or solar class is simple, you should only redeclare the monitor object as GridClass member or SolarClass member.
-
-![image](img/Classes1.png)
-
-- Be careful, you should not use the EnergyMonitorClass because it is an abstract class.
-
-![image](img/Classes2.png)
-
-- Set the features of the device like (Type, phaseType, deviceID, deviceName....)
-
-![image](img/defined.png)
-
-- Set the root topic (defined in energy_monitor.cpp) using "ul" (ultra light protocol) , "EnergyMonitoring" (API_KEY) and design topics using the features of the device (in defined.h)
-
-![image](img/roottopic.png)
-
-- Handlewifi
-
-![image](img/handleWifi.png)
-
 ## code
 <img src="img/EnergyMonitorClass.png" style=" width:590px ; height:999px "  >
 <img src="img/GridorSolar.png"  >
+
+### Project files
+
+- `Threephase_Energy_Monitoring.ino`:
+
+- `defined.h`:
+
+- `ADE9000RegMap.h`:
+
+- `ADE9000API.cpp`:
+
+- `ADE9000API.h`:
+
+- `energy_monitor.cpp`:
+
+- `energy_monitor.h`:
+
+- `GridClass.cpp`:
+
+- `GridClass.h`:
+
+- `SolarClass.cpp`:
+
+- `SolarClass.cpp`:
+
+- `Interrupts.cpp`:
+
+- `Interrupts.h`:
+
+- `RealTime.cpp`:
+
+- `RealTime.h`:
+
+- `OTA.cpp`:
+
+- `OTA.h`:
 
 ### Explanation of functions
 
@@ -216,6 +217,40 @@ Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that rep
 
 - `PublishtotalReactiveEnergy`: Publish total Imported reactive energy of a Grid system or Publish total Exported reactive energy of a Solar system.
 
+- Inside Handlewifi function:
+
+![image](img/handleWifi.png)
+
+## Monitor configuration
+
+- Set-up Wifi credentials. 
+Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that represents the broker address.
+
+![image](img/config1.png)
+
+- You can configure the periodicity of measurements using the defined parameters.
+
+![image](img/periodicity.png)
+
+- You can configure timerFactorChanger to make less measurements in case of wifi disruption.
+
+![image](img/timerFactorChanger.png)
+
+- Choosing between Grid or solar class is simple, you should only redeclare the monitor object as GridClass member or SolarClass member.
+
+![image](img/Classes1.png)
+
+- Be careful, you should not use the EnergyMonitorClass because it is an abstract class.
+
+![image](img/Classes2.png)
+
+- Set the features of the device like (Type, phaseType, deviceID, deviceName....)
+
+![image](img/defined.png)
+
+- Set the root topic (defined in energy_monitor.cpp) using "ul" (ultra light protocol) , "EnergyMonitoring" (API_KEY) and design topics using the features of the device (in defined.h)
+
+![image](img/roottopic.png)
 
 
 # Prerequisites
