@@ -120,8 +120,6 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 
 
 ## code
-<img src="img/EnergyMonitorClass.png" style=" width:590px ; height:999px "  >
-<img src="img/GridorSolar.png"  >
 
 ### Project files
 
@@ -158,6 +156,13 @@ The ESP32 performs periodic measurements using timer interrupts. The data is tra
 - `OTA.cpp`:
 
 - `OTA.h`:
+
+### Classes
+
+- The "EnergyMonitor" abstract class forms the core structure, defining essential attributes and methods for comprehensive energy tracking. This abstraction lays the groundwork for specialized monitoring through two derived classes: "SolarClass" and "GridClass," both inheriting from "EnergyMonitor." In these subclasses, the methods for calculating "totalActiveEnergy" and "totalReactiveEnergy" are redefined to cater specifically to solar and grid-based energy sources. 
+
+<img src="img/EnergyMonitorClass.png" style=" width:590px ; height:999px "  >
+<img src="img/GridorSolar.png"  >
 
 ### Explanation of functions
 
