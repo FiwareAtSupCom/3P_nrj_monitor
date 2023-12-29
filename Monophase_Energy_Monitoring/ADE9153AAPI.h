@@ -116,11 +116,11 @@ public:
 	uint32_t SPI_Read_32(uint16_t Address);
 
 	/* ADE9153A Calculated Paramter Read Functions */
-	void ReadEnergyRegs(volatile EnergyRegs *Data);
-	void ReadPowerRegs(volatile PowerRegs *Data);
-	void ReadRMSRegs(volatile RMSRegs *Data);
+	void ReadEnergyRegs(EnergyRegs *Data);
+	void ReadPowerRegs(PowerRegs *Data);
+	void ReadRMSRegs(RMSRegs *Data);
 	void ReadHalfRMSRegs(HalfRMSRegs *Data);
-	void ReadPQRegs(volatile PQRegs *Data);
+	void ReadPQRegs(PQRegs *Data);
 
 	void ReadAcalRegs(AcalRegs *Data);
 	bool StartAcal_AINormal(void);
@@ -132,10 +132,10 @@ public:
 	void ReadTemperature(Temperature *Data);
 
   /*Added Functions*/
-    void InitActiveEnergy(volatile EnergyRegs* Energy);
-    void AccumulateActiveEnergy(volatile EnergyRegs* Energy);
-    void InitReactiveEnergy(volatile EnergyRegs* Energy);
-    void AccumulateReactiveEnergy(volatile EnergyRegs* Energy);
+    void InitActiveEnergy(EnergyRegs* Energy);
+    void AccumulateActiveEnergy(EnergyRegs* Energy);
+    void InitReactiveEnergy(EnergyRegs* Energy);
+    void AccumulateReactiveEnergy(EnergyRegs* Energy);
 
 private:
 	uint8_t _chipSelect_Pin;

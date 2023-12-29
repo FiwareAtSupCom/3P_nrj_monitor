@@ -302,11 +302,11 @@ class ADE9000Class
 		void SPI_Burst_Read_Resampled_Wfb(uint16_t Address, uint16_t Read_Element_Length, ResampledWfbData *ResampledData);    
 		
 		/*ADE9000 Calculated Parameter Read Functions*/
-		void ReadActivePowerRegs(volatile ActivePowerRegs *Data);
-		void ReadReactivePowerRegs(volatile ReactivePowerRegs *Data);
-		void ReadApparentPowerRegs(volatile ApparentPowerRegs *Data);
-		void ReadVoltageRMSRegs(volatile VoltageRMSRegs *Data);
-		void ReadCurrentRMSRegs(volatile CurrentRMSRegs *Data);
+		void ReadActivePowerRegs(ActivePowerRegs *Data);
+		void ReadReactivePowerRegs(ReactivePowerRegs *Data);
+		void ReadApparentPowerRegs(ApparentPowerRegs *Data);
+		void ReadVoltageRMSRegs(VoltageRMSRegs *Data);
+		void ReadCurrentRMSRegs(CurrentRMSRegs *Data);
 		void ReadFundActivePowerRegs(FundActivePowerRegs *Data);
 		void ReadFundReactivePowerRegs(FundReactivePowerRegs *Data);
 		void ReadFundApparentPowerRegs(FundApparentPowerRegs *Data);
@@ -316,10 +316,10 @@ class ADE9000Class
 		void ReadHalfCurrentRMSRegs(HalfCurrentRMSRegs *Data);
 		void ReadTen12VoltageRMSRegs(Ten12VoltageRMSRegs *Data);
 		void ReadTen12CurrentRMSRegs(Ten12CurrentRMSRegs *Data);
-		void ReadVoltageTHDRegsnValues(volatile VoltageTHDRegs *Data);
-		void ReadCurrentTHDRegsnValues(volatile CurrentTHDRegs *Data);
-		void ReadPowerFactorRegsnValues(volatile PowerFactorRegs *Data);
-		void ReadPeriodRegsnValues(volatile PeriodRegs *Data);
+		void ReadVoltageTHDRegsnValues(VoltageTHDRegs *Data);
+		void ReadCurrentTHDRegsnValues(CurrentTHDRegs *Data);
+		void ReadPowerFactorRegsnValues(PowerFactorRegs *Data);
+		void ReadPeriodRegsnValues(PeriodRegs *Data);
 		void ReadAngleRegsnValues(AngleRegs *Data);		
 		void ReadTempRegnValue(TemperatureRegnValue *Data);
 		
@@ -330,10 +330,10 @@ class ADE9000Class
 		uint32_t readWordFromEeprom(uint16_t address);
 
     /*Added Functions*/
-    void InitActiveEnergy(volatile ActiveEnergyperH* ActiveEnergy);
-    void AccumulateActiveEnergy(volatile ActiveEnergyperH* ActiveEnergy);
-    void InitReactiveEnergy(volatile ReactiveEnergyperH* ReactiveEnergy);
-    void AccumulateReactiveEnergy(volatile ReactiveEnergyperH* ReactiveEnergy);
+    void InitActiveEnergy(ActiveEnergyperH* ActiveEnergy);
+    void AccumulateActiveEnergy(ActiveEnergyperH* ActiveEnergy);
+    void InitReactiveEnergy(ReactiveEnergyperH* ReactiveEnergy);
+    void AccumulateReactiveEnergy(ReactiveEnergyperH* ReactiveEnergy);
 		
 	private:
 		uint8_t  _chipSelect_Pin;

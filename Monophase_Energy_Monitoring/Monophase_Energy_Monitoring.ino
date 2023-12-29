@@ -30,13 +30,13 @@ const char* password = "98228782";
 wl_status_t WifiStatus;
 
 struct tm timeinfo;
-extern volatile SemaphoreHandle_t powerSemaphore;
-extern volatile SemaphoreHandle_t AccumulationSemaphore;
-extern volatile SemaphoreHandle_t energySemaphore;
-extern volatile SemaphoreHandle_t cfSemaphore;
-extern volatile SemaphoreHandle_t THDSemaphore;
+extern SemaphoreHandle_t powerSemaphore;
+extern SemaphoreHandle_t AccumulationSemaphore;
+extern SemaphoreHandle_t energySemaphore;
+extern SemaphoreHandle_t cfSemaphore;
+extern SemaphoreHandle_t THDSemaphore;
 
-extern volatile EnergyRegs* Energy;
+extern EnergyRegs* Energy;
 std::queue<struct dataNode> myQueue;
 
 WiFiClient wifiClient;

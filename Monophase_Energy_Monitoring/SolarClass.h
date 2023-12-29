@@ -1,6 +1,6 @@
 #include "energy_monitor.h"
 
-extern volatile EnergyRegs* Energy;
+extern EnergyRegs* Energy;
 extern WiFiClient wifiClient;
 extern MqttClient mqttClient;
 extern const char root_Topic[];

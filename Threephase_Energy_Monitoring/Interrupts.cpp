@@ -5,11 +5,11 @@ hw_timer_t * Energytimer = NULL;
 hw_timer_t * CFtimer = NULL;
 hw_timer_t * THDtimer = NULL;
 
-volatile SemaphoreHandle_t powerSemaphore;
-volatile SemaphoreHandle_t AccumulationSemaphore;
-volatile SemaphoreHandle_t energySemaphore;
-volatile SemaphoreHandle_t cfSemaphore;
-volatile SemaphoreHandle_t THDSemaphore;
+SemaphoreHandle_t powerSemaphore;
+SemaphoreHandle_t AccumulationSemaphore;
+SemaphoreHandle_t energySemaphore;
+SemaphoreHandle_t cfSemaphore;
+SemaphoreHandle_t THDSemaphore;
 portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 
 

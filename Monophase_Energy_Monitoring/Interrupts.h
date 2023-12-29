@@ -1,13 +1,13 @@
 #include "ADE9153AAPI.h"
 #include "defined.h"
 
-extern volatile uint8_t EnergySamples;
+extern uint8_t EnergySamples;
 
-extern volatile PowerRegs* Power;
-extern volatile EnergyRegs* Energy;
+extern PowerRegs* Power;
+extern EnergyRegs* Energy;
 
-extern volatile RMSRegs* RMS;
-extern volatile PQRegs* PQ;
+extern RMSRegs* RMS;
+extern PQRegs* PQ;
 
 void IRAM_ATTR PowertimerISR() ;
 

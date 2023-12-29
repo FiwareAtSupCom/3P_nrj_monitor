@@ -12,23 +12,23 @@
 #define MeasureStartTime_add 12
 
 
-volatile ActivePowerRegs* ActivePower;
-volatile ReactivePowerRegs* ReactivePower;
-volatile ApparentPowerRegs* ApparentPower;
+ActivePowerRegs* ActivePower;
+ReactivePowerRegs* ReactivePower;
+ApparentPowerRegs* ApparentPower;
 
-volatile ActiveEnergyperH* ActiveEnergy;
-volatile ReactiveEnergyperH* ReactiveEnergy;
+ActiveEnergyperH* ActiveEnergy;
+ReactiveEnergyperH* ReactiveEnergy;
 
-volatile VoltageRMSRegs* VoltageRMS;
-volatile CurrentRMSRegs* CurrentRMS;
-volatile PowerFactorRegs* PowerFactor;
-volatile AngleRegs* Angle;
-volatile PeriodRegs* Frequency;
+VoltageRMSRegs* VoltageRMS;
+CurrentRMSRegs* CurrentRMS;
+PowerFactorRegs* PowerFactor;
+AngleRegs* Angle;
+PeriodRegs* Frequency;
 
-volatile CurrentTHDRegs* CurrentTHD;
-volatile VoltageTHDRegs* VoltageTHD;
+CurrentTHDRegs* CurrentTHD;
+VoltageTHDRegs* VoltageTHD;
 
-volatile uint8_t EnergySamples;
+uint8_t EnergySamples;
 
 const char root_Topic[]="/ul/EnergyMonitoring/areaServed/Type/phaseType/deviceID";
 
@@ -464,7 +464,7 @@ float_t EnergyMonitorClass::ReadEnergyCounter(uint8_t phase){
 
 
 
-void EnergyMonitorClass::store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue){
+void EnergyMonitorClass::store_data(char* sub_Topic,void* data,std::queue<struct dataNode>& myQueue){
   if (esp_get_free_heap_size()>(sizeof(struct dataNode))){
     struct dataNode node;
     char Time[21];

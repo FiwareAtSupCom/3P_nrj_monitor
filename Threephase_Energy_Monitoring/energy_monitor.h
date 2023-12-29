@@ -46,7 +46,7 @@ class EnergyMonitorClass
 
     void PublishtotalApparentPower(char* sub_Topic);
 
-    void store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue);
+    void store_data(char* sub_Topic,void* data,std::queue<struct dataNode>& myQueue);
 
 
 	public:

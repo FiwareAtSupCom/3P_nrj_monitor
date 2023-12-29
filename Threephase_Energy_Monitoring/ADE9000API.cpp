@@ -193,35 +193,35 @@ Input: Structure name
 Output: Active power codes stored in respective structure
 */
 
-void ADE9000Class:: ReadActivePowerRegs(volatile ActivePowerRegs *Data)
+void ADE9000Class:: ReadActivePowerRegs(ActivePowerRegs *Data)
 {
 	Data->ActivePowerReg_A = int32_t (SPI_Read_32(ADDR_AWATT));
 	Data->ActivePowerReg_B = int32_t (SPI_Read_32(ADDR_BWATT));
 	Data->ActivePowerReg_C = int32_t (SPI_Read_32(ADDR_CWATT));
 }
 
-void ADE9000Class:: ReadReactivePowerRegs(volatile ReactivePowerRegs *Data)
+void ADE9000Class:: ReadReactivePowerRegs(ReactivePowerRegs *Data)
 {
 	Data->ReactivePowerReg_A = int32_t (SPI_Read_32(ADDR_AVAR));
 	Data->ReactivePowerReg_B = int32_t (SPI_Read_32(ADDR_BVAR));
 	Data->ReactivePowerReg_C = int32_t (SPI_Read_32(ADDR_CVAR));	
 }
 
-void ADE9000Class:: ReadApparentPowerRegs(volatile ApparentPowerRegs *Data)
+void ADE9000Class:: ReadApparentPowerRegs(ApparentPowerRegs *Data)
 {
 	Data->ApparentPowerReg_A = int32_t (SPI_Read_32(ADDR_AVA));
 	Data->ApparentPowerReg_B = int32_t (SPI_Read_32(ADDR_BVA));
 	Data->ApparentPowerReg_C = int32_t (SPI_Read_32(ADDR_CVA));	
 }
 
-void ADE9000Class:: ReadVoltageRMSRegs(volatile VoltageRMSRegs *Data)
+void ADE9000Class:: ReadVoltageRMSRegs(VoltageRMSRegs *Data)
 {
 	Data->VoltageRMSReg_A = int32_t (SPI_Read_32(ADDR_AVRMS));
 	Data->VoltageRMSReg_B = int32_t (SPI_Read_32(ADDR_BVRMS));
 	Data->VoltageRMSReg_C = int32_t (SPI_Read_32(ADDR_CVRMS));	
 }
 
-void ADE9000Class:: ReadCurrentRMSRegs(volatile CurrentRMSRegs *Data)
+void ADE9000Class:: ReadCurrentRMSRegs(CurrentRMSRegs *Data)
 {
 	Data->CurrentRMSReg_A = int32_t (SPI_Read_32(ADDR_AIRMS));
 	Data->CurrentRMSReg_B = int32_t (SPI_Read_32(ADDR_BIRMS));
@@ -296,7 +296,7 @@ void ADE9000Class:: ReadTen12CurrentRMSRegs(Ten12CurrentRMSRegs *Data)
 	
 }
 
-void ADE9000Class:: ReadVoltageTHDRegsnValues(volatile VoltageTHDRegs *Data)
+void ADE9000Class:: ReadVoltageTHDRegsnValues(VoltageTHDRegs *Data)
 {
 	uint32_t tempReg;
 	float tempValue;
@@ -315,7 +315,7 @@ void ADE9000Class:: ReadVoltageTHDRegsnValues(volatile VoltageTHDRegs *Data)
 	Data->VoltageTHDValue_C=tempValue;			
 }
 
-void ADE9000Class:: ReadCurrentTHDRegsnValues(volatile CurrentTHDRegs *Data)
+void ADE9000Class:: ReadCurrentTHDRegsnValues(CurrentTHDRegs *Data)
 {
 	uint32_t tempReg;
 	float tempValue;	
@@ -334,7 +334,7 @@ void ADE9000Class:: ReadCurrentTHDRegsnValues(volatile CurrentTHDRegs *Data)
 	Data->CurrentTHDValue_C=tempValue;
 }
 
-void ADE9000Class:: ReadPowerFactorRegsnValues(volatile PowerFactorRegs *Data)
+void ADE9000Class:: ReadPowerFactorRegsnValues(PowerFactorRegs *Data)
 {
 	uint32_t tempReg;
 	float tempValue;	
@@ -353,7 +353,7 @@ void ADE9000Class:: ReadPowerFactorRegsnValues(volatile PowerFactorRegs *Data)
 	Data->PowerFactorValue_C=tempValue;
 }
 
-void ADE9000Class:: ReadPeriodRegsnValues(volatile PeriodRegs *Data)
+void ADE9000Class:: ReadPeriodRegsnValues(PeriodRegs *Data)
 {
 	uint32_t tempReg;
 	float tempValue;	
@@ -556,13 +556,13 @@ uint32_t ADE9000Class:: readWordFromEeprom(uint16_t address)
 	return returndata;	
 }
 
-void ADE9000Class:: InitActiveEnergy(volatile ActiveEnergyperH* ActiveEnergy){
+void ADE9000Class:: InitActiveEnergy(ActiveEnergyperH* ActiveEnergy){
   ActiveEnergy->ActiveEnergy_A=0;
   ActiveEnergy->ActiveEnergy_B=0;
   ActiveEnergy->ActiveEnergy_C=0;
 }
 
-void ADE9000Class:: AccumulateActiveEnergy(volatile ActiveEnergyperH* ActiveEnergy)
+void ADE9000Class:: AccumulateActiveEnergy(ActiveEnergyperH* ActiveEnergy)
 {
   uint32_t DataA;
   uint32_t DataB;
@@ -584,13 +584,13 @@ void ADE9000Class:: AccumulateActiveEnergy(volatile ActiveEnergyperH* ActiveEner
   ActiveEnergy->ActiveEnergy_C+=DataC;
 }
 
-void ADE9000Class:: InitReactiveEnergy(volatile ReactiveEnergyperH* ReactiveEnergy){
+void ADE9000Class:: InitReactiveEnergy(ReactiveEnergyperH* ReactiveEnergy){
   ReactiveEnergy->ReactiveEnergy_A=0;
   ReactiveEnergy->ReactiveEnergy_B=0;
   ReactiveEnergy->ReactiveEnergy_C=0;
 }
 
-void ADE9000Class:: AccumulateReactiveEnergy(volatile ReactiveEnergyperH* ReactiveEnergy)
+void ADE9000Class:: AccumulateReactiveEnergy(ReactiveEnergyperH* ReactiveEnergy)
 {
   uint32_t DataA;
   uint32_t DataB;

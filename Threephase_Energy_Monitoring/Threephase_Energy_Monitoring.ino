@@ -28,11 +28,11 @@ const char* password = "98228782";
 wl_status_t WifiStatus;
 
 struct tm timeinfo;
-extern volatile SemaphoreHandle_t powerSemaphore;
-extern volatile SemaphoreHandle_t AccumulationSemaphore;
-extern volatile SemaphoreHandle_t energySemaphore;
-extern volatile SemaphoreHandle_t cfSemaphore;
-extern volatile SemaphoreHandle_t THDSemaphore;
+extern SemaphoreHandle_t powerSemaphore;
+extern SemaphoreHandle_t AccumulationSemaphore;
+extern SemaphoreHandle_t energySemaphore;
+extern SemaphoreHandle_t cfSemaphore;
+extern SemaphoreHandle_t THDSemaphore;
 
 
 std::queue<struct dataNode> myQueue;
@@ -44,21 +44,21 @@ MqttClient mqttClient(wifiClient);
 const char broker[]="192.168.1.16";
 int port =1883;
 
-extern volatile ActivePowerRegs* ActivePower;
-extern volatile ReactivePowerRegs* ReactivePower;
-extern volatile ApparentPowerRegs* ApparentPower;
+extern ActivePowerRegs* ActivePower;
+extern ReactivePowerRegs* ReactivePower;
+extern ApparentPowerRegs* ApparentPower;
 
-extern volatile ActiveEnergyperH* ActiveEnergy;
-extern volatile ReactiveEnergyperH* ReactiveEnergy;
+extern ActiveEnergyperH* ActiveEnergy;
+extern ReactiveEnergyperH* ReactiveEnergy;
 
-extern volatile VoltageRMSRegs* VoltageRMS;
-extern volatile CurrentRMSRegs* CurrentRMS;
-extern volatile PowerFactorRegs* PowerFactor;
-extern volatile AngleRegs* Angle;
-extern volatile PeriodRegs* Frequency;
+extern VoltageRMSRegs* VoltageRMS;
+extern CurrentRMSRegs* CurrentRMS;
+extern PowerFactorRegs* PowerFactor;
+extern AngleRegs* Angle;
+extern PeriodRegs* Frequency;
 
-extern volatile CurrentTHDRegs* CurrentTHD;
-extern volatile VoltageTHDRegs* VoltageTHD;
+extern CurrentTHDRegs* CurrentTHD;
+extern VoltageTHDRegs* VoltageTHD;
 
 void setup() 
 {

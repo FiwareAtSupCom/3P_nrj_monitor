@@ -8,14 +8,14 @@
 #define MeasureStartTime_add 4
 
 
-volatile PowerRegs* Power;
+PowerRegs* Power;
 
-volatile EnergyRegs* Energy;
+EnergyRegs* Energy;
 
-volatile RMSRegs* RMS;
-volatile PQRegs* PQ;
+RMSRegs* RMS;
+PQRegs* PQ;
 
-volatile uint8_t EnergySamples;
+uint8_t EnergySamples;
 
 const char root_Topic[]="/ul/EnergyMonitoring/areaServed/Type/phaseType/deviceID";
 
@@ -347,7 +347,7 @@ float_t EnergyMonitorClass::ReadEnergyCounter(){
 
 
 
-void EnergyMonitorClass::store_data(char* sub_Topic,volatile void* data,std::queue<struct dataNode>& myQueue){
+void EnergyMonitorClass::store_data(char* sub_Topic,void* data,std::queue<struct dataNode>& myQueue){
   if (esp_get_free_heap_size()>(sizeof(struct dataNode))){
     struct dataNode node;
     char Time[21];

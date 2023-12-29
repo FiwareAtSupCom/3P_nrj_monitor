@@ -195,7 +195,7 @@ Input: Structure name
 Output: Respective metrology data
 */
 
-void ADE9153AClass:: ReadEnergyRegs(volatile struct EnergyRegs *Data)
+void ADE9153AClass:: ReadEnergyRegs(struct EnergyRegs *Data)
 {
 	int32_t tempReg;
 	float tempValue;
@@ -216,7 +216,7 @@ void ADE9153AClass:: ReadEnergyRegs(volatile struct EnergyRegs *Data)
 	Data->ApparentEnergyValue = tempValue;				//Energy in mVAhr
 }
 
-void ADE9153AClass:: ReadPowerRegs(volatile struct PowerRegs *Data)
+void ADE9153AClass:: ReadPowerRegs(struct PowerRegs *Data)
 {
 	int32_t tempReg;
 	float tempValue;
@@ -237,7 +237,7 @@ void ADE9153AClass:: ReadPowerRegs(volatile struct PowerRegs *Data)
 	Data->ApparentPowerValue = tempValue;				//Power in mVA
 }
 
-void ADE9153AClass:: ReadRMSRegs(volatile struct RMSRegs *Data)
+void ADE9153AClass:: ReadRMSRegs(struct RMSRegs *Data)
 {
 	uint32_t tempReg;
 	float tempValue;
@@ -269,7 +269,7 @@ void ADE9153AClass:: ReadHalfRMSRegs(struct HalfRMSRegs *Data)
 	Data->HalfVoltageRMSValue = tempValue;
 }
 
-void ADE9153AClass:: ReadPQRegs(volatile struct PQRegs *Data)
+void ADE9153AClass:: ReadPQRegs(struct PQRegs *Data)
 {
 	int32_t tempReg;
 	uint16_t temp;
@@ -430,12 +430,12 @@ void ADE9153AClass:: ReadTemperature(struct Temperature * Data)
 	Data->TemperatureVal = tempValue;
 }
 
-void ADE9153AClass:: InitActiveEnergy(volatile EnergyRegs* Energy){
+void ADE9153AClass:: InitActiveEnergy(EnergyRegs* Energy){
   Energy->ActiveEnergyValue=0;
   
 }
 
-void ADE9153AClass:: AccumulateActiveEnergy(volatile EnergyRegs* Energy)
+void ADE9153AClass:: AccumulateActiveEnergy(EnergyRegs* Energy)
 {
   uint32_t Data;
 
@@ -445,11 +445,11 @@ void ADE9153AClass:: AccumulateActiveEnergy(volatile EnergyRegs* Energy)
   Energy->ActiveEnergyValue+=Data;
 }
 
-void ADE9153AClass:: InitReactiveEnergy(volatile EnergyRegs* Energy){
+void ADE9153AClass:: InitReactiveEnergy(EnergyRegs* Energy){
   Energy->FundReactiveEnergyValue=0;
 }
 
-void ADE9153AClass:: AccumulateReactiveEnergy(volatile EnergyRegs* Energy)
+void ADE9153AClass:: AccumulateReactiveEnergy(EnergyRegs* Energy)
 {
   uint32_t Data;
 
