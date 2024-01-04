@@ -376,13 +376,11 @@ The Data Model intended to measure the electrical energies consumed by an electr
 The data we will use is:
 
 
-
-
 * totalActiveEnergyImport:Total energy imported i.e. consumed. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilowatt hour'
 
 * totalReactiveEnergyImport:Total energy imported i.e. consumed (with regards to fundamental frequency reactive power). The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilovolt-ampere-reactive-hour.'
 
-* totalActiveEnergyExport: Total energy imported i.e. consumed . The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilowatt hour'
+* totalActiveEnergyExport: Total energy exported i.e. consumed . The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilowatt hour'
 
 * totalReactiveEnergyExport:  Total fundamental frequency reactive energy exported. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'kilovolt-ampere-reactive-hour'
   
@@ -412,14 +410,11 @@ The data we will use is:
 
 * totalReactivePower: Total Reactive Power consumed. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'volt-ampere-reactive'
 
-* totalReactivePower: Total Reactive Power consumed. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'volt-ampere-reactive'
-
 * current: Electrical current. The unit code (text) is given using the [UN/CEFACT Common Codes](http://wiki.goodrelations-vocabulary.org/Documentation/UN/CEFACT_Common_Codes). Units:'Ampere'
 
 * dateEnergyMeteringStarted: start date of energy metering.
 
 * dateModified: Timestamp of the last modification of the entity.
-
 
 * Power factor :  It is the ratio of real power (the power that actually performs the work) to apparent power (the total power in the circuit).
 
