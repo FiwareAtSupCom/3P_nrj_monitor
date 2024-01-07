@@ -530,6 +530,10 @@ curl -X GET \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
+The obtained entity keeps track of the latest measurements only. That’s why we need a way to store the history of our data. FIWARE proposes Quantumleap as a solution.
+QuantumLeap converts NGSI semi-structured data into tabular format and stores it in a timeseries database, associating each database record with a time index foreach entity update.
+QuantumLeap supports CrateDB as a backend database.
+
 *to add subscription to the context broker :
 ```yaml
 curl -iX POST 'http://localhost:1026/v2/subscriptions' \
