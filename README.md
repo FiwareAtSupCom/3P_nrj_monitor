@@ -528,6 +528,8 @@ to create entity in the context broker :
 curl -iX POST \
   --url 'http://localhost:1026/v2/entities' \
   --header 'Content-Type: application/json' \
+  --header 'fiware-service: openiot' \
+  --header 'fiware-servicepath: /' \
   --data '{
       "id": "urn:ngsi-ld:ACMeasurement:MNCA-ACM-001",
       "type": "ACMeasurement",
@@ -565,6 +567,8 @@ to add a new data entity:
 curl -iX POST \
   --url 'http://localhost:1026/v2/op/update' \
   --header 'Content-Type: application/json' \
+  --header 'fiware-service: openiot' \
+  --header 'fiware-servicepath: /' \
   --data '{
     "actionType": "append",
     "entities": [
