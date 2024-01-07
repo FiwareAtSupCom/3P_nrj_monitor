@@ -523,12 +523,79 @@ curl -X GET \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
-*to show the added device from the context broker:
+to create entity in the context broker :
+```yaml
+curl -iX POST \
+  --url 'http://localhost:1026/v2/entities' \
+  --header 'Content-Type: application/json' \
+  --data '{
+      "id": "urn:ngsi-ld:ACMeasurement:MNCA-ACM-001",
+      "type": "ACMeasurement",
+      "refDevice": {"type": "array", "value": ["urn:ngsi-ld:Device:T1-F01-TR05-ACTP"]},
+      "phasetype": {"type": "string", "value": "threePhase"},
+      "frequency": {"type": "number", "value": 50.020672},
+      "dateEnergyMeteringStarted": {"type": "string", "value": "2020-07-07T15:05:59.408Z"},
+      "totalActiveEnergyImport": {"type": "number", "value": 150781.96448},
+      "totalReactiveEnergyImport": {"type": "number", "value": 20490.3392},
+      "totalActiveEnergyExport": {"type": "number", "value": 1059.80176},
+      "totalReactiveEnergyExport": {"type": "number", "value": 93275.02176},
+      "activePower": {"type": "object", "value": {"L1": 11996.416016, "L2": 9461.501953, "L3": 10242.351562}},
+      "reactivePower": {"type": "object", "value": {"L1": -2612.606934, "L2": -2209.906006, "L3": -3007.81958}},
+      "apparentPower": {"type": "object", "value": {"L1": 13201.412109, "L2": 10755.304688, "L3": 11941.094727}},
+      "totalActivePower": {"type": "number", "value": 31700.269531},
+      "totalReactivePower": {"type": "object", "value": -7830.332031},
+      "totalApparentPower": {"type": "object", "value": 36019.089844},
+      "powerFactor": {"type": "object", "value": {"L1": 0.908817, "L2": 0.879906, "L3": 0.859293}},
+      "displacementPowerFactor": {"type": "object", "value": {"L1": 0.978013, "L2": 0.973317, "L3": 0.960382}},
+      "current": {"type": "object", "value": {"L1": 56.126038, "L2": 45.894356, "L3": 50.872452, "N": 0.0}},
+      "phaseVoltage": {"type": "object", "value": {"L1": 234.961304, "L2": 234.563477, "L3": 235.354034}},
+      "phaseToPhaseVoltage": {"type": "object", "value": {"L12": 406.769196, "L23": 407.081238, "L31": 407.734558}},
+      "thdVoltage": {"type": "object", "value": {"L1": 0.01471114, "L2": 0.01600046, "L3": 0.01541459}},
+      "thdCurrent": {"type": "object", "value": {"L1": 0.38497337, "L2": 0.45807529, "L3": 0.4938652}},
+      "dateObserved": {"type": "string", "value": "2020-03-17T08:45:00Z"}
+    }'
+```
+to show the created entity:
 ```yaml
 curl -X GET \
-  'http://localhost:1026/v2/entities/urn:ngsi-ld:ACMeasurement:ACMeasurement:MNCA-ACM-001?type=ACMeasurement' \
-  -H 'fiware-service: openiot' \
-  -H 'fiware-servicepath: /'
+  --url 'http://localhost:1026/v2/entities/urn:ngsi-ld:ACMeasurement:MNCA-ACM-001?type=ACMeasurement'
+```
+to add a new data entity:
+```yaml
+curl -iX POST \
+  --url 'http://localhost:1026/v2/op/update' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "actionType": "append",
+    "entities": [
+      {
+        "id": "urn:ngsi-ld:ACMeasurement:MNCA-ACM-002",
+        "type": "ACMeasurement",
+        "refDevice": {"type": "array", "value": ["urn:ngsi-ld:Device:T1-F02-TR05-ACTP"]},
+        "phasetype": {"type": "string", "value": "threePhase"},
+        "frequency": {"type": "number", "value": 40.020672},
+        "dateEnergyMeteringStarted": {"type": "string", "value": "2020-07-08T15:05:59.408Z"},
+        "totalActiveEnergyImport": {"type": "number", "value": 140781.96448},
+        "totalReactiveEnergyImport": {"type": "number", "value": 10490.3392},
+        "totalActiveEnergyExport": {"type": "number", "value": 1049.80176},
+        "totalReactiveEnergyExport": {"type": "number", "value": 92275.02176},
+        "activePower": {"type": "object", "value": {"L1": 10996.416016, "L2": 8461.501953, "L3": 9242.351562}},
+        "reactivePower": {"type": "object", "value": {"L1": -1612.606934, "L2": -1209.906006, "L3": -2007.81958}},
+        "apparentPower": {"type": "object", "value": {"L1": 12201.412109, "L2": 9755.304688, "L3": 10941.094727}},
+        "totalActivePower": {"type": "number", "value": 30700.269531},
+        "totalReactivePower": {"type": "object", "value": -6830.332031},
+        "totalApparentPower": {"type": "object", "value": 35019.089844},
+        "powerFactor": {"type": "object", "value": {"L1": 0.808817, "L2": 0.779906, "L3": 0.759293}},
+        "displacementPowerFactor": {"type": "object", "value": {"L1": 0.878013, "L2": 0.873317, "L3": 0.860382}},
+        "current": {"type": "object", "value": {"L1": 46.126038, "L2": 35.894356, "L3": 40.872452, "N": 0.0}},
+        "phaseVoltage": {"type": "object", "value": {"L1": 134.961304, "L2": 134.563477, "L3": 135.354034}},
+        "phaseToPhaseVoltage": {"type": "object", "value": {"L12": 306.769196, "L23": 307.081238, "L31": 307.734558}},
+        "thdVoltage": {"type": "object", "value": {"L1": 0.01471114, "L2": 0.01600046, "L3": 0.01541459}},
+        "thdCurrent": {"type": "object", "value": {"L1": 0.38497337, "L2": 0.45807529, "L3": 0.4938652}},
+        "dateObserved": {"type": "string", "value": "2020-03-18T08:45:00Z"}
+      }
+    ]
+  }'
 ```
 The obtained entity keeps track of the latest measurements only. That’s why we need a way to store the history of our data. FIWARE proposes Quantumleap as a solution.
 QuantumLeap converts NGSI semi-structured data into tabular format and stores it in a timeseries database, associating each database record with a time index foreach entity update.
