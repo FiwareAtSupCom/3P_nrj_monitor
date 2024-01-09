@@ -560,7 +560,9 @@ curl -iX POST \
 to show the created entity:
 ```yaml
 curl -X GET \
-  --url 'http://localhost:1026/v2/entities/urn:ngsi-ld:ACMeasurement:MNCA-ACM-001?type=ACMeasurement'
+  --url 'http://localhost:1026/v2/entities/urn:ngsi-ld:ACMeasurement:MNCA-ACM-001?type=ACMeasurement' \
+  --header 'fiware-service: openiot' \
+  --header 'fiware-servicepath: /'
 ```
 to add a new data entity:
 ```yaml
@@ -612,20 +614,23 @@ curl -iX POST 'http://localhost:1026/v2/subscriptions' \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /' \
   -d '{
-  "description": "Notify QuantumLeap of all DHT Sensor changes",
-  "subject": {
-    "entities": [
-      {
-        "idPattern": "urn:ngsi-ld:ACMeasurement:ACMeasurement:MNCA-ACM-001"
+    "description": "Notify QuantumLeap of all DHT Sensor changes",
+    "subject": {
+      "entities": [
+        {
+          "idPattern": "urn:ngsi-ld:ACMeasurement:MNCA-ACM-001"
+        }
+      ]
+    },
+    "condition": {
+      "attrs": ["totalActivePower", "totalActiveEnergyImport", "totalActiveEnergyExport"]
+    },
+    "notification": {
+      "http": {
+        "url": "http://quantumleap:8668/v2/notify"
       }
-    ]
-  },
-  "notification": {
-    "http": {
-      "url": "http://quantumleap:8668/v2/notify"
     }
-  }
-}'
+  }'
 ```
 *to show the created subscription:
 ```yaml
