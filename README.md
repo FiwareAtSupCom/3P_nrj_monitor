@@ -373,6 +373,8 @@ docker-compose up -d
 # NGSI / datamodeles 
 The Data Model intended to measure the electrical energies consumed by an electrical system which uses an Alternating Current (AC) for a three-phase (L1, L2, L3) or single-phase (L) and neutral (N). It integrates the initial version of the data Modem [THREEPHASEMEASUREMENT], extended to also perform single-phase measurements. It includes attributes for various electrical measurements 
 
+Using a standard data model facilitates interoperability between systems, simplifies integration, ensures data consistency, promotes system scalability and flexibility, facilitates data analysis, and enables compliance with industry standards. By adopting a recognized standard, the information exchange process becomes more efficient, and the system becomes more robust and interoperable in the context of the Internet of Things (IoT).
+
 The data we will use is:
 
 
@@ -523,6 +525,8 @@ curl -X GET \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /'
 ```
+Adding an entity to the context broker means creating a specific Digital Twin for a three-phase system, virtually representing the real-time state, quantity, and quality of energy. This digital twin, fueled by accurate data, becomes a synchronized virtual replica of the actual electrical system. This approach enables detailed monitoring, in-depth analysis, and a comprehensive understanding of the energy performance of the three-phase system.
+
 to create entity in the context broker :
 ```yaml
 curl -iX POST \
@@ -606,6 +610,9 @@ curl -iX POST \
 The obtained entity keeps track of the latest measurements only. That’s why we need a way to store the history of our data. FIWARE proposes Quantumleap as a solution.
 QuantumLeap converts NGSI semi-structured data into tabular format and stores it in a timeseries database, associating each database record with a time index foreach entity update.
 QuantumLeap supports CrateDB as a backend database.
+
+
+A subscription is essentially a way for Quantumleap to register with the context broker to be notified of any changes made to specific entities it wishes to monitor. This allows Quantumleap to process and store these changes appropriately in the time series database.
 
 *to add subscription to the context broker :
 ```yaml
