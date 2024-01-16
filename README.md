@@ -68,7 +68,7 @@ The three-phase energy measurement and monitoring system could be utilized to mo
 
 # Architecture
 ### Functional & description
-![image](img/architecture.png)
+![image](img/architecture.jpg)
 1. ADE9000 Electrical Parameter Acquisition:
 The ADE9000 meter captures electrical parameters and stores them in its registers.
 
@@ -87,7 +87,7 @@ Quantum Leap ensures data continuity by transferring information from MongoDB to
 6.  Visualization with Grafana:
 Grafana, interfacing with CrateDB, provides an intuitive and real-time visualization platform for effective analysis and monitoring of the energy system.
 ### Information system & description
-![MyImage](img/info_system.png)
+![MyImage](img/info_system.jpg)
 1. Data Flow Overview for IoT Energy Monitoring System:
 In our project, the data flow initiation involves the IoT device sending NGSI V2 requests to the Orion Context Broker. Subsequently, the Context Broker stores this data in MongoDB, establishing a robust foundation for the creation of digital twins, virtual instances that faithfully mirror the real-time states of corresponding physical systems.
 
