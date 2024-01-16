@@ -7,42 +7,32 @@ GridClass::GridClass()
 }
 
 
-void GridClass::PublishtotalActiveEnergy(char* sub_Topic){
+void GridClass::PublishtotalActiveEnergy(){
 
   char topic[100];
-  snprintf(topic, sizeof(topic), "%s/Energy/%sImport/L1", root_Topic, sub_Topic);
-  mqttClient.beginMessage(topic);
+  snprintf(topic, sizeof(topic), "e6|{L1: %f, L2: %f, L3: %f}",(ActiveEnergy->ActiveEnergy_A)*EnergyConversionConstant,(ActiveEnergy->ActiveEnergy_B)*EnergyConversionConstant,(ActiveEnergy->ActiveEnergy_C)*EnergyConversionConstant);
+  if (WiFi.status() == WL_CONNECTED){
+  mqttClient.beginMessage(root_Topic);
   mqttClient.print(topic);
-  mqttClient.print((ActiveEnergy->ActiveEnergy_A)*EnergyConversionConstant);
   mqttClient.endMessage();
-  snprintf(topic, sizeof(topic), "%s/Energy/%sImport/L2", root_Topic, sub_Topic);
-  mqttClient.beginMessage(topic);
-  mqttClient.print((ActiveEnergy->ActiveEnergy_B)*EnergyConversionConstant);
-  mqttClient.endMessage();
-  snprintf(topic, sizeof(topic), "%s/Energy/%sImport/L3", root_Topic, sub_Topic);
-  mqttClient.beginMessage(topic);
-  mqttClient.print((ActiveEnergy->ActiveEnergy_C)*EnergyConversionConstant);
-  mqttClient.endMessage();
-  PublishdateObserved("dateObserved");
+  PublishdateObserved("e23");
+  }else{
+      myQueue.push(topic);
+    }
   
 }
 
-void GridClass::PublishtotalReactiveEnergy(char* sub_Topic){
+void GridClass::PublishtotalReactiveEnergy(){
 
   char topic[100];
-  snprintf(topic, sizeof(topic), "%s/Energy/%sImport/L1", root_Topic, sub_Topic);
-  mqttClient.beginMessage(topic);
+  snprintf(topic, sizeof(topic), "e7|{L1: %f, L2: %f, L3: %f}",(ReactiveEnergy->ReactiveEnergy_A)*EnergyConversionConstant,(ReactiveEnergy->ReactiveEnergy_B)*EnergyConversionConstant,(ReactiveEnergy->ReactiveEnergy_C)*EnergyConversionConstant);
+  if (WiFi.status() == WL_CONNECTED){
+  mqttClient.beginMessage(root_Topic);
   mqttClient.print(topic);
-  mqttClient.print((ReactiveEnergy->ReactiveEnergy_A)*EnergyConversionConstant);
   mqttClient.endMessage();
-  snprintf(topic, sizeof(topic), "%s/Energy/%sImport/L2", root_Topic, sub_Topic);
-  mqttClient.beginMessage(topic);
-  mqttClient.print((ReactiveEnergy->ReactiveEnergy_B)*EnergyConversionConstant);
-  mqttClient.endMessage();
-  snprintf(topic, sizeof(topic), "%s/Energy/%sImport/L3", root_Topic, sub_Topic);
-  mqttClient.beginMessage(topic);
-  mqttClient.print((ReactiveEnergy->ReactiveEnergy_C)*EnergyConversionConstant);
-  mqttClient.endMessage();
-  PublishdateObserved("dateObserved");
+  PublishdateObserved("e23");
+  }else{
+      myQueue.push(topic);
+    }
   
 }

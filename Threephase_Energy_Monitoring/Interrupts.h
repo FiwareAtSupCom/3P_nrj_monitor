@@ -1,22 +1,22 @@
 #include "ADE9000API.h"
 #include "defined.h"
 
-extern uint8_t EnergySamples;
-extern ActivePowerRegs* ActivePower;
-extern ReactivePowerRegs* ReactivePower;
-extern ApparentPowerRegs* ApparentPower;
+extern volatile uint8_t EnergySamples;
+extern volatile ActivePowerRegs* ActivePower;
+extern volatile ReactivePowerRegs* ReactivePower;
+extern volatile ApparentPowerRegs* ApparentPower;
 
-extern ActiveEnergyperH* ActiveEnergy;
-extern ReactiveEnergyperH* ReactiveEnergy;
+extern volatile ActiveEnergyperH* ActiveEnergy;
+extern volatile ReactiveEnergyperH* ReactiveEnergy;
 
-extern VoltageRMSRegs* VoltageRMS;
-extern CurrentRMSRegs* CurrentRMS;
-extern PowerFactorRegs* PowerFactor;
-extern AngleRegs* Angle;
-extern PeriodRegs* Frequency;
+extern volatile VoltageRMSRegs* VoltageRMS;
+extern volatile CurrentRMSRegs* CurrentRMS;
+extern volatile PowerFactorRegs* PowerFactor;
+extern volatile AngleRegs* Angle;
+extern volatile PeriodRegs* Frequency;
 
-extern CurrentTHDRegs* CurrentTHD;
-extern VoltageTHDRegs* VoltageTHD;
+extern volatile CurrentTHDRegs* CurrentTHD;
+extern volatile VoltageTHDRegs* VoltageTHD;
 
 void IRAM_ATTR PowertimerISR() ;
 
