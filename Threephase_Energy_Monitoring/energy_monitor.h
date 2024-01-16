@@ -27,14 +27,8 @@ extern MqttClient mqttClient;
 
 extern const char root_Topic[];
 
-extern std::queue<struct dataNode> myQueue;
+extern std::queue<String> myQueue;
 
-struct dataNode
- {
-	char* topic;
-  volatile void* data; 	
-  char time[21];
- }; 
 
 class EnergyMonitorClass
 {
@@ -45,8 +39,6 @@ class EnergyMonitorClass
     void PublishtotalReactivePower(char* sub_Topic);
 
     void PublishtotalApparentPower(char* sub_Topic);
-
-    void store_data(char* sub_Topic,void* data,std::queue<struct dataNode>& myQueue);
 
 
 	public:
@@ -62,7 +54,7 @@ class EnergyMonitorClass
 
     float_t ReadEnergyCounter(uint8_t phase);
 
-    void send_data(std::queue<struct dataNode>& myQueue);
+    void send_data(std::queue<String>& myQueue);
 
     void Change_timers_config(unsigned int Factor);
 
@@ -74,9 +66,9 @@ class EnergyMonitorClass
 
     void PublishphaseType(char* sub_Topic,char* type);
 
-    virtual void PublishtotalActiveEnergy(char* sub_Topic)=0;
+    virtual void PublishtotalActiveEnergy()=0;
 
-    virtual void PublishtotalReactiveEnergy(char* sub_Topic)=0;
+    virtual void PublishtotalReactiveEnergy()=0;
 
     void PublishActivePower(char* sub_Topic);
 

@@ -22,43 +22,43 @@ void readResampledData(void);
 void resetADE9000(void);
 
 /*WiFi settings*/
-const char* ssid = "TOPNETF15A40D9";
-const char* password = "98228782";
+const char* ssid = "HUAWEI Y6s";
+const char* password = "nidhalbr1999";
 
 wl_status_t WifiStatus;
 
 struct tm timeinfo;
-extern SemaphoreHandle_t powerSemaphore;
-extern SemaphoreHandle_t AccumulationSemaphore;
-extern SemaphoreHandle_t energySemaphore;
-extern SemaphoreHandle_t cfSemaphore;
-extern SemaphoreHandle_t THDSemaphore;
+extern volatile SemaphoreHandle_t powerSemaphore;
+extern volatile SemaphoreHandle_t AccumulationSemaphore;
+extern volatile SemaphoreHandle_t energySemaphore;
+extern volatile SemaphoreHandle_t cfSemaphore;
+extern volatile SemaphoreHandle_t THDSemaphore;
 
 
-std::queue<struct dataNode> myQueue;
+std::queue<String> myQueue;
 
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
 /*Static address of broker*/
-const char broker[]="192.168.1.16";
+const char broker[]="192.168.43.145";
 int port =1883;
 
-extern ActivePowerRegs* ActivePower;
-extern ReactivePowerRegs* ReactivePower;
-extern ApparentPowerRegs* ApparentPower;
+extern volatile ActivePowerRegs* ActivePower;
+extern volatile ReactivePowerRegs* ReactivePower;
+extern volatile ApparentPowerRegs* ApparentPower;
 
-extern ActiveEnergyperH* ActiveEnergy;
-extern ReactiveEnergyperH* ReactiveEnergy;
+extern volatile ActiveEnergyperH* ActiveEnergy;
+extern volatile ReactiveEnergyperH* ReactiveEnergy;
 
-extern VoltageRMSRegs* VoltageRMS;
-extern CurrentRMSRegs* CurrentRMS;
-extern PowerFactorRegs* PowerFactor;
-extern AngleRegs* Angle;
-extern PeriodRegs* Frequency;
+extern volatile VoltageRMSRegs* VoltageRMS;
+extern volatile CurrentRMSRegs* CurrentRMS;
+extern volatile PowerFactorRegs* PowerFactor;
+extern volatile AngleRegs* Angle;
+extern volatile PeriodRegs* Frequency;
 
-extern CurrentTHDRegs* CurrentTHD;
-extern VoltageTHDRegs* VoltageTHD;
+extern volatile CurrentTHDRegs* CurrentTHD;
+extern volatile VoltageTHDRegs* VoltageTHD;
 
 void setup() 
 {
@@ -129,9 +129,9 @@ void loop() {
     ade9000.ReadActivePowerRegs(ActivePower);
     ade9000.ReadReactivePowerRegs(ReactivePower);
     ade9000.ReadApparentPowerRegs(ApparentPower);
-    monitor.PublishActivePower("ActivePower");
-    monitor.PublishReactivePower("ReactivePower");
-    monitor.PublishApparentPower("ApparentPower");
+    monitor.PublishActivePower("e10");
+    monitor.PublishReactivePower("e11");
+    monitor.PublishApparentPower("e12");
   }
   if (xSemaphoreTake(AccumulationSemaphore, 0) == pdTRUE){
     ///////  ENERGY  Read energy register with reset mode page(21)
@@ -140,9 +140,9 @@ void loop() {
   }
   if (xSemaphoreTake(energySemaphore, 0) == pdTRUE){
     monitor.StoreCountedEnergy();
-    monitor.PublishtotalActiveEnergy("totalActiveEnergy"); 
+    monitor.PublishtotalActiveEnergy(); 
     ade9000.InitActiveEnergy(ActiveEnergy);
-    monitor.PublishtotalReactiveEnergy("totalReactiveEnergy");
+    monitor.PublishtotalReactiveEnergy();
     ade9000.InitReactiveEnergy(ReactiveEnergy);
   } 
   if (xSemaphoreTake(cfSemaphore, 0) == pdTRUE){
@@ -150,16 +150,16 @@ void loop() {
     ade9000.ReadVoltageRMSRegs(VoltageRMS);
     ade9000.ReadPowerFactorRegsnValues(PowerFactor);
     ade9000.ReadPeriodRegsnValues(Frequency);
-    monitor.PublishpowerFactor("powerFactor"); 
-    monitor.Publishvoltage("voltage");
-    monitor.Publishcurrent("current");
-    monitor.Publishfrequency("frequency");
+    monitor.PublishpowerFactor("e16"); 
+    monitor.Publishvoltage("e19");
+    monitor.Publishcurrent("e18");
+    monitor.Publishfrequency("e4");
   } 
   if (xSemaphoreTake(THDSemaphore, 0) == pdTRUE){
     ade9000.ReadVoltageTHDRegsnValues(VoltageTHD);
     ade9000.ReadCurrentTHDRegsnValues(CurrentTHD);
-    monitor.PublishvoltageTHD("voltageTHD");
-    monitor.PublishcurrentTHD("currentTHD");
+    monitor.PublishvoltageTHD("e21");
+    monitor.PublishcurrentTHD("e22");
   }
 
   disconnectWifi();
