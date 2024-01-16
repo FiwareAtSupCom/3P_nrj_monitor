@@ -507,7 +507,7 @@ curl -iX POST 'http://localhost:1026/v2/subscriptions' \
   -H 'fiware-service: openiot' \
   -H 'fiware-servicepath: /' \
   -d '{
-  "description": "Notify QuantumLeap of all DHT Sensor changes",
+  "description": "Notify QuantumLeap of all changes",
   "subject": {
     "entities": [
       {
