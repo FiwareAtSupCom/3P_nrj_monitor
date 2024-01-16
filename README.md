@@ -75,16 +75,18 @@ The ADE9000 meter captures electrical parameters and stores them in its register
 2.  ESP32 Data Retrieval via SPI Interface:
 The ESP32 reads data from the ADE9000 using the SPI interface.
 
-3.  Data Transmission using Wi-Fi and HTTP Requests:
-The ESP32 transmits data through HTTP requests over Wi-Fi, facilitating seamless communication.
+3.  Data transmission via Wi-Fi and requests (plublish): The ESP32
+transmits data via MQTT queries over Wi-Fi, facilitating seamless communication.
 
-4.   Orchestrating Data with Context Broker:
+4.  Mosquitto: will be the broker server which will manage publications and subscriptions.
+
+5.   Orchestrating Data with Context Broker:
 The Context Broker, acting as the data orchestrator, receives data from ESP32 and stores it in MongoDB for digital twin creation.
 
-5.  Time Series Database with Quantum Leap and CrateDB:
+6.  Time Series Database with Quantum Leap and CrateDB:
 Quantum Leap ensures data continuity by transferring information from MongoDB to CrateDB, establishing a robust time series database.
 
-6.  Visualization with Grafana:
+7.  Visualization with Grafana:
 Grafana, interfacing with CrateDB, provides an intuitive and real-time visualization platform for effective analysis and monitoring of the energy system.
 ### Information system & description
 ![MyImage](img/info_system.jpg)
