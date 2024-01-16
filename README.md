@@ -217,7 +217,7 @@ Use ipconfig(for windows) or ifconfig(for linux) to get your ip address that rep
 
 ![image](img/defined.png)
 
-- Set the root topic (defined in energy_monitor.cpp) using "ul" (ultra light protocol) , "EnergyMonitoring" (API_KEY) and design topics using the features of the device (in defined.h)
+- Set the root topic (defined in energy_monitor.cpp) using "ul" (ultra light protocol) , "EnergyMonitoring" (API_KEY) , DeviceId and attrs keyword.
 
 ![image](img/roottopic.png)
 
